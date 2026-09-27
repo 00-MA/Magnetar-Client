@@ -92,20 +92,28 @@ public class IntSetting : Setting
         string formatString = isFloat ? ("0." + new string('0', decPlaces)) : "0";
         string translatedName = Translator.Translate(name);
 
-        float resetBtnW = Config.S(22f);
-        float gap = Config.S(6f);
+        float elemH = Config.elementHeight;
+        float indent = Config.indent;
+        float gap = Config.SettingsInput.Gap;
+        float resetBtnW = Config.SettingsInput.ResetButtonW;
         float inputW = Config.SettingsInput.NumericInputWidth;
-        float sliderW = Config.SettingWidth - inputW - 10f;
+        float sliderW = Config.SettingWidth - inputW - gap;
         float trackH = Config.SettingsInput.SliderHeight;
         float thumbSize = Config.S(16f);
 
-        float rightOffset = width - Config.indent;
-        Rect resetRect = new(rightOffset - resetBtnW, y, resetBtnW, Config.elementHeight);
-        Rect inputRect = new(resetRect.x - gap - inputW, y, inputW, Config.elementHeight);
-        Rect sliderRect = new(inputRect.x - 10f - sliderW, y + ((Config.elementHeight - trackH) / 2f), sliderW, trackH);
-        Rect sliderHitBox = new(sliderRect.x, y, sliderRect.width, Config.elementHeight);
+        // Right-to-left layout: [Reset] <- [Input] <- [Slider]
+        float resetStartX = width - indent - resetBtnW;
+        float inputStartX = resetStartX - gap - inputW;
+        float sliderStartX = inputStartX - gap - sliderW;
 
-        GUI.Label(new Rect(Config.indent, y, sliderRect.x - Config.indent - gap, Config.elementHeight), translatedName, Magnetar_Default.SettingLabelStyle);
+        Rect resetRect = new(resetStartX, y, resetBtnW, elemH);
+        Rect inputRect = new(inputStartX, y, inputW, elemH);
+        Rect sliderRect = new(sliderStartX, y + ((elemH - trackH) / 2f), sliderW, trackH);
+        Rect sliderHitBox = new(sliderStartX, y, sliderW, elemH);
+
+        // Label on the left fills remaining space
+        float labelW = sliderStartX - indent - gap;
+        GUI.Label(new Rect(indent, y, labelW, elemH), translatedName, Magnetar_Default.SettingLabelStyle);
 
         float LogConvert(float v) => Mathf.Sign(v) * Mathf.Log10(Mathf.Abs(v) + 1.0f);
         float ExpConvert(float l) => Mathf.Sign(l) * (Mathf.Pow(10.0f, Mathf.Abs(l)) - 1.0f);
@@ -196,7 +204,7 @@ public class IntSetting : Setting
             else ((IntSetting)setting).Reset();
         }
 
-        y += Config.elementHeight + Config.spacing;
+        y += elemH + Config.spacing;
     }
 }
 

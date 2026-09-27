@@ -47,18 +47,23 @@ public class StringSetting : Setting
     public override void Draw(ref float y, float width)
     {
         float elemH = Config.elementHeight;
-        string translatedName = Translator.Translate(Name);
-
-        float resetBtnW = Config.S(22f);
-        float gap = Config.S(6f);
+        float indent = Config.indent;
+        float gap = Config.SettingsInput.Gap;
+        float resetBtnW = Config.SettingsInput.ResetButtonW;
         float controlW = Mathf.Min(Config.SettingWidth * 1.25f, width * 0.52f);
-        float labelW = Mathf.Max(width * 0.35f, width - (Config.indent * 2f) - controlW - resetBtnW - (gap * 2f));
 
-        Rect labelRect = new(Config.indent, y, labelW, elemH);
-        Rect inputRect = new(width - Config.indent - resetBtnW - gap - controlW, y, controlW, elemH);
-        Rect resetRect = new(width - Config.indent - resetBtnW, y, resetBtnW, elemH);
+        // Label on the left occupies remaining width
+        float labelW = width - (indent * 2f) - controlW - gap - resetBtnW;
+        Rect labelRect = new(indent, y, labelW, elemH);
 
-        GUI.Label(labelRect, translatedName, Magnetar_Default.SettingLabelStyle);
+        // Right-to-left layout: [Control] [gap] [Reset]
+        float resetStartX = width - indent - resetBtnW;
+        float inputStartX = resetStartX - gap - controlW;
+
+        Rect inputRect = new(inputStartX, y, controlW, elemH);
+        Rect resetRect = new(resetStartX, y, resetBtnW, elemH);
+
+        GUI.Label(labelRect, Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
         Value = DrawSetting.DrawManualTextField(inputRect, Value, "", AutocompleteVars);
 
         if (DrawResetButton(resetRect))

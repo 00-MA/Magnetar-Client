@@ -61,21 +61,29 @@ public class SelectSetting : Setting
         Event e = Event.current;
         int controlId = GetHashCode();
 
-        string translatedName = Translator.Translate(Name);
-        float resetBtnW = Config.S(22f);
-        float gap = Config.S(6f);
+        float elemH = Config.elementHeight;
+        float indent = Config.indent;
+        float gap = Config.SettingsInput.Gap;
+        float resetBtnW = Config.SettingsInput.ResetButtonW;
+        float btnW = Config.SettingWidth;
 
-        GUI.Label(new Rect(Config.indent, y, width - Config.indent * 2 - Config.SettingWidth - resetBtnW - gap, Config.elementHeight),
-            translatedName, Magnetar_Default.SettingLabelStyle);
+        // Label on the left: fills remaining horizontal space
+        float labelW = width - (indent * 2f) - btnW - gap - resetBtnW;
+        Rect labelRect = new(indent, y, labelW, elemH);
+        GUI.Label(labelRect, Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
+
+        // Right-to-left layout: [Dropdown Button] [gap] [Reset Button]
+        float resetStartX = width - indent - resetBtnW;
+        float btnStartX = resetStartX - gap - btnW;
+
+        Rect resetRect = new(resetStartX, y, resetBtnW, elemH);
+        Rect btnRect = new(btnStartX, y, btnW, elemH);
 
         string currentValName = "Unknown";
         if (Options.ContainsKey(Value))
         {
             currentValName = (CustomNames != null && CustomNames.ContainsKey(Value)) ? CustomNames[Value] : Options[Value];
         }
-
-        Rect btnRect = new(width - Config.indent - resetBtnW - gap - Config.SettingWidth, y, Config.SettingWidth, Config.elementHeight);
-        Rect resetRect = new(width - Config.indent - resetBtnW, y, resetBtnW, Config.elementHeight);
 
         if (btnRect.Contains(e.mousePosition) && e.type == EventType.MouseDown && e.button == 0)
         {
@@ -153,6 +161,6 @@ public class SelectSetting : Setting
             Reset();
         }
 
-        y += Config.elementHeight + Config.spacing;
+        y += elemH + Config.spacing;
     }
 }

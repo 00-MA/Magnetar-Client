@@ -60,17 +60,24 @@ public class BindSetting : Setting
         Event e = Event.current;
         bool isLeftClick = e.type == EventType.MouseDown && e.button == 0;
 
-        string translatedName = Translator.Translate(Name);
-        float resetBtnW = Config.S(22f);
-        float gap = Config.S(6f);
-        float labelWidth = Mathf.Max(width * 0.40f, width - Config.indent * 2 - Config.SettingWidth - resetBtnW - gap);
+        float indent = Config.indent;
+        float gap = Config.SettingsInput.Gap;
+        float resetBtnW = Config.SettingsInput.ResetButtonW;
+        float settingW = Config.SettingWidth;
 
-        GUI.Label(new Rect(Config.indent, y, labelWidth, Config.elementHeight), translatedName, Magnetar_Default.SettingLabelStyle);
+        // Label: occupies remaining width on the left
+        float labelW = width - (indent * 2f) - settingW - gap - resetBtnW;
+        Rect labelRect = new(indent, y, labelW, Config.elementHeight);
+        GUI.Label(labelRect, Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
+
+        // Right-aligned elements: [Control Button] [gap] [Reset Button]
+        float resetStartX = width - indent - resetBtnW;
+        float bindStartX = resetStartX - gap - settingW;
+
+        Rect bindRect = new(bindStartX, y, settingW, Config.elementHeight);
+        Rect resetRect = new(resetStartX, y, resetBtnW, Config.elementHeight);
 
         string bindText = IsBinding ? "[...]" : GetBindString();
-        Rect bindRect = new(width - Config.indent - resetBtnW - gap - Config.SettingWidth, y, Config.SettingWidth, Config.elementHeight);
-        Rect resetRect = new(width - Config.indent - resetBtnW, y, resetBtnW, Config.elementHeight);
-
         GUI.Box(bindRect, bindText, IsBinding ? Magnetar_Default.SettingOn : Magnetar_Default.SettingOff);
 
         if (bindRect.Contains(e.mousePosition) && isLeftClick)

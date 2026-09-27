@@ -39,17 +39,21 @@ public class Vector2Setting : Setting
     public override void Draw(ref float y, float width)
     {
         float elemH = Config.elementHeight;
-        float resetBtnW = Config.S(22f);
-        float gap = Config.S(4f);
+        float indent = Config.indent;
+        float gap = Config.SettingsInput.Gap;
+        float resetBtnW = Config.SettingsInput.ResetButtonW;
         float subLabelW = Config.S(16f);
-
-        float labelW = Mathf.Max(width * 0.35f, width - Config.indent * 2 - Config.SettingWidth - resetBtnW - (gap * 2));
-        GUI.Label(new Rect(Config.indent, y, labelW, elemH), Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
-
         float totalControlW = Config.SettingWidth;
+
+        // Label: Left space
+        float labelW = width - (indent * 2f) - totalControlW - gap - resetBtnW;
+        GUI.Label(new Rect(indent, y, labelW, elemH), Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
+
+        // Component layout: [X] [box] [Y] [box]
         float itemW = (totalControlW - (gap * 3f) - (subLabelW * 2f)) / 2f;
 
-        float currX = width - Config.indent - resetBtnW - gap - totalControlW;
+        float resetStartX = width - indent - resetBtnW;
+        float currX = resetStartX - gap - totalControlW;
 
         // X component
         GUI.Label(new Rect(currX, y, subLabelW, elemH), "X", Magnetar_Default.TextStyle);
@@ -73,7 +77,7 @@ public class Vector2Setting : Setting
         }
 
         // Reset Button
-        Rect resetRect = new(width - Config.indent - resetBtnW, y, resetBtnW, elemH);
+        Rect resetRect = new(resetStartX, y, resetBtnW, elemH);
         if (DrawResetButton(resetRect))
         {
             Reset();
@@ -116,16 +120,21 @@ public class Vector3Setting : Setting
     public override void Draw(ref float y, float width)
     {
         float elemH = Config.elementHeight;
-        float resetBtnW = Config.S(22f);
-        float gap = Config.S(4f);
+        float indent = Config.indent;
+        float gap = Config.SettingsInput.Gap;
+        float resetBtnW = Config.SettingsInput.ResetButtonW;
         float subLabelW = Config.S(14f);
-
-        float labelW = Mathf.Max(width * 0.32f, width - Config.indent * 2 - Config.SettingWidth - resetBtnW - (gap * 2));
-        GUI.Label(new Rect(Config.indent, y, labelW, elemH), Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
-
         float totalControlW = Config.SettingWidth * 1.15f;
+
+        // Label: Left space
+        float labelW = width - (indent * 2f) - totalControlW - gap - resetBtnW;
+        GUI.Label(new Rect(indent, y, labelW, elemH), Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
+
+        // Component layout: [X] [box] [Y] [box] [Z] [box]
         float itemW = (totalControlW - (gap * 5f) - (subLabelW * 3f)) / 3f;
-        float currX = width - Config.indent - resetBtnW - gap - totalControlW;
+
+        float resetStartX = width - indent - resetBtnW;
+        float currX = resetStartX - gap - totalControlW;
 
         // X component
         GUI.Label(new Rect(currX, y, subLabelW, elemH), "X", Magnetar_Default.TextStyle);
@@ -156,7 +165,7 @@ public class Vector3Setting : Setting
         }
 
         // Reset Button
-        Rect resetRect = new(width - Config.indent - resetBtnW, y, resetBtnW, elemH);
+        Rect resetRect = new(resetStartX, y, resetBtnW, elemH);
         if (DrawResetButton(resetRect))
         {
             Reset();

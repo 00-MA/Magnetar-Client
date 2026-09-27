@@ -21,12 +21,19 @@ public class ButtonSetting : Setting
     public override void Draw(ref float y, float width)
     {
         Event e = Event.current;
-        string translatedName = Translator.Translate(Name);
-        GUI.Label(new Rect(Config.indent, y, width - Config.indent * 2 - Config.SettingWidth, Config.elementHeight), translatedName, Magnetar_Default.SettingLabelStyle);
 
-        Rect btnRect = new(
-            width - Config.indent - Config.SettingWidth - Config.SettingsInput.Gap - Config.SettingsInput.ResetButtonW,
-            y, Config.SettingWidth, Config.elementHeight);
+        float indent = Config.indent;
+        float gap = Config.SettingsInput.Gap;
+
+        // Label
+        float labelW = width - indent * 2 - Config.SettingWidth;
+        Rect labelRect = new(indent, y, labelW, Config.elementHeight);
+        GUI.Label(labelRect, Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
+
+        // Button
+        float btnW = Config.SettingWidth;
+        float btnStartX = width - indent - btnW - gap - Config.SettingsInput.ResetButtonW;
+        Rect btnRect = new(btnStartX, y, Config.SettingWidth, Config.elementHeight);
         GUI.Box(btnRect, Translator.Translate(ButtonText), Magnetar_Default.ButtonSettingStyle);
 
         if (btnRect.Contains(e.mousePosition) && e.type == EventType.MouseDown && e.button == 0)

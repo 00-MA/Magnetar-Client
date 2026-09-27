@@ -17,6 +17,7 @@ public class SectionInstance
         Title = title;
         ChildSettings = settings ?? new List<Setting>();
     }
+
     /// <summary>
     /// Finds the first setting in ChildSettings by its name
     /// </summary>
@@ -33,15 +34,16 @@ public class SectionInstance
         }
         return null;
     }
+
     /// <summary>
     /// Finds the first setting in ChildSettings by its name
     /// </summary>
     public bool Find(string name, out Setting setting)
     {
         setting = Find(name);
-
         return setting != null;
     }
+
     /// <summary>
     /// Finds the first setting in ChildSettings by its name
     /// </summary>
@@ -49,6 +51,7 @@ public class SectionInstance
     {
         return Find(name) as T;
     }
+
     /// <summary>
     /// Finds the first setting in ChildSettings by its name
     /// </summary>
@@ -112,12 +115,13 @@ public class SectionSetting : Setting
     {
         Event e = Event.current;
         float elemH = Config.elementHeight;
-        float actionBtnW = Config.S(22f);
-        float gap = Config.S(6f);
+        float indent = Config.indent;
+        float gap = Config.SettingsInput.Gap;
+        float actionBtnW = Config.SettingsInput.ResetButtonW;
 
         // 1. Group Header
         string title = $"{Translator.Translate(Name)} ({Sections.Count})";
-        Rect titleRect = new(Config.indent, y, width - (Config.indent * 2), elemH);
+        Rect titleRect = new(indent, y, width - (indent * 2f), elemH);
         GUI.Box(titleRect, title, Magnetar_Default.SectionGroupHeaderStyle);
         y += elemH + gap;
 
@@ -127,10 +131,15 @@ public class SectionSetting : Setting
         for (int i = 0; i < Sections.Count; i++)
         {
             var section = Sections[i];
-            float sectionWidth = width - (Config.indent * 2);
+            float sectionTotalW = width - (indent * 2f);
+            float headerH = Config.S(24f);
 
-            Rect secHeaderRect = new(Config.indent, y, sectionWidth - actionBtnW - gap, Config.S(24f));
-            Rect delRect = new(Config.indent + sectionWidth - actionBtnW, y, actionBtnW, Config.S(24f));
+            // Right-aligned action button
+            float delStartX = indent + sectionTotalW - actionBtnW;
+            float secHeaderW = sectionTotalW - actionBtnW - gap;
+
+            Rect secHeaderRect = new(indent, y, secHeaderW, headerH);
+            Rect delRect = new(delStartX, y, actionBtnW, headerH);
 
             string foldArrow = section.IsExpanded ? "▼ " : "▶ ";
             string secLabel = foldArrow + Translator.Translate(section.Title);
@@ -149,7 +158,7 @@ public class SectionSetting : Setting
                 e.Use();
             }
 
-            y += Config.S(24f) + gap;
+            y += headerH + gap;
 
             // Render children if expanded
             if (section.IsExpanded)
@@ -170,10 +179,11 @@ public class SectionSetting : Setting
 
         // 3. Add Section & Reset Button Row
         bool canAdd = (MaxSections == -1 || Sections.Count < MaxSections);
-        float addBtnW = width - (Config.indent * 2) - actionBtnW - gap;
+        float resetStartX = width - indent - actionBtnW;
+        float addBtnW = width - (indent * 2f) - actionBtnW - gap;
 
-        Rect addBtnRect = new(Config.indent, y, addBtnW, elemH);
-        Rect resetRect = new(Config.indent + addBtnW + gap, y, actionBtnW, elemH);
+        Rect addBtnRect = new(indent, y, addBtnW, elemH);
+        Rect resetRect = new(resetStartX, y, actionBtnW, elemH);
 
         GUIStyle addStyle = canAdd ? Magnetar_Default.SectionAddButtonStyle : Magnetar_Default.CategoryModuleOffStyle;
         if (GUI.Button(addBtnRect, canAdd ? Translator.Translate("+ Add Section") : Translator.Translate("Max Sections Reached"), addStyle))

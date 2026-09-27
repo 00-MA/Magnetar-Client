@@ -38,26 +38,29 @@ public class ListStringSetting : Setting
     {
         Event e = Event.current;
         float elemH = Config.elementHeight;
-        float gap = Config.S(6f);
-        float resetBtnW = Config.S(22f);
-        float actionBtnW = Config.S(22f);
-
+        float indent = Config.indent;
+        float gap = Config.SettingsInput.Gap;
+        float resetBtnW = Config.SettingsInput.ResetButtonW;
+        float actionBtnW = Config.SettingsInput.ResetButtonW;
         float addBtnW = Config.SettingWidth;
 
-        // 1. Label on top/left
+        // Label on the left
         float labelW = Mathf.Max(width * 0.35f, Config.S(120f));
-        GUI.Label(new Rect(Config.indent, y, labelW, elemH), Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
+        Rect labelRect = new(indent, y, labelW, elemH);
+        GUI.Label(labelRect, Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
 
-        float rightBoxW = width - Config.indent * 2f - labelW;
-        float startX = width - Config.indent - rightBoxW;
+        // Input fields right column area
+        float rightBoxW = width - (indent * 2f) - labelW - gap;
+        float startX = width - indent - rightBoxW;
 
         int removeIndex = -1;
 
-        // 2. Render each textfield entry with minus '-' button
+        // Render each text field entry with delete '—' button
         for (int i = 0; i < Values.Count; i++)
         {
-            Rect rowRect = new(startX, y, rightBoxW - actionBtnW - gap, elemH);
-            Rect delRect = new(startX + rightBoxW - actionBtnW, y, actionBtnW, elemH);
+            float rowFieldW = rightBoxW - actionBtnW - gap;
+            Rect rowRect = new(startX, y, rowFieldW, elemH);
+            Rect delRect = new(startX + rowFieldW + gap, y, actionBtnW, elemH);
 
             Values[i] = DrawSetting.DrawManualTextField(rowRect, Values[i] ?? "", "", AutocompleteVars);
 
@@ -77,14 +80,17 @@ public class ListStringSetting : Setting
             OnValueChanged?.Invoke(Values);
         }
 
-        // 3. Bottom Row
-        Rect resetRect = new(width - Config.indent - resetBtnW, y, resetBtnW, elemH);
-        Rect addBtnRect = new(resetRect.x - gap - addBtnW, y, addBtnW, elemH);
+        // Bottom action row: [Add Button] [gap] [Reset Button]
+        float resetStartX = width - indent - resetBtnW;
+        float addStartX = resetStartX - gap - addBtnW;
+
+        Rect resetRect = new(resetStartX, y, resetBtnW, elemH);
+        Rect addBtnRect = new(addStartX, y, addBtnW, elemH);
 
         bool canAdd = Values.Count < MaxCount;
         GUIStyle addStyle = canAdd ? Magnetar_Default.ListAddButtonStyle : Magnetar_Default.CategoryModuleOffStyle;
 
-        GUI.Box(addBtnRect, canAdd ? Translator.Translate("Add") : Translator.Translate("Max Reached"), addStyle);
+        GUI.Box(addBtnRect, Translator.Translate(canAdd ? "Add" : "Max Reached"), addStyle);
 
         if (canAdd && addBtnRect.Contains(e.mousePosition) && e.type == EventType.MouseDown && e.button == 0)
         {
