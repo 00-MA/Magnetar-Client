@@ -71,27 +71,51 @@ public class WindowStyleTheme
 [Serializable]
 public class TypographyTheme
 {
+    /// <summary>
+    /// Color for the description of a module inside the module setting window
+    /// </summary>
     [JsonProperty("description")]
     public string Description { get; set; }
 
+    /// <summary>
+    /// Color for the text of a Label setting
+    /// </summary>
     [JsonProperty("label")]
     public string Label { get; set; }
 
+    /// <summary>
+    /// Color for the text of the author of the module
+    /// </summary>
     [JsonProperty("author")]
     public string Author { get; set; }
 
+    /// <summary>
+    /// Primary Color for the text of a setting's name and for the text inside the text field
+    /// </summary>
     [JsonProperty("text")]
     public string Text { get; set; }
 
+    /// <summary>
+    /// Color for the text which is highlighted by the cursor inside a text field
+    /// </summary>
     [JsonProperty("highlight text")]
     public string HighlightText { get; set; }
 
+    /// <summary>
+    /// Color for the background of a text which is highlighted by the cursor inside a text field
+    /// </summary>
     [JsonProperty("highlight background")]
     public string HighlightBackground { get; set; }
 
+    /// <summary>
+    /// Color for the text of the separator
+    /// </summary>
     [JsonProperty("secondary", NullValueHandling = NullValueHandling.Ignore)]
     public string Secondary { get; set; }
 
+    /// <summary>
+    /// Primary Color for the text of a setting's name and for the text inside the text field
+    /// </summary>
     [JsonProperty("primary", NullValueHandling = NullValueHandling.Ignore)]
     public string Primary { get => Text; set => Text = value; }
 }
@@ -162,51 +186,96 @@ public class SectionSettingTheme
 [Serializable]
 public class ThemeData
 {
+    /// <summary>
+    /// Name for the custom theme
+    /// </summary>
     [JsonProperty("name")]
     public string Name { get; set; } = "Custom Theme";
 
+    /// <summary>
+    /// Style for the Top Bar buttons when the Button is not selected
+    /// </summary>
     [JsonProperty("TopBarOff")]
     public ElementStyleTheme TopBarOff { get; set; } = new ElementStyleTheme();
 
+    /// <summary>
+    /// Style for the Top Bar buttons when the Button is selected
+    /// </summary>
     [JsonProperty("TopBarActive")]
     public ElementStyleTheme TopBarActive { get; set; } = new ElementStyleTheme();
 
+    /// <summary>
+    /// Style for the name of header of a category window like "Level" or "Visual"
+    /// </summary>
     [JsonProperty("CategoryHeader")]
     public ElementStyleTheme CategoryHeader { get; set; } = new ElementStyleTheme();
 
+    /// <summary>
+    /// Style for the background of a category window
+    /// </summary>
     [JsonProperty("CategoryWindow")]
     public WindowStyleTheme CategoryWindow { get; set; } = new WindowStyleTheme();
 
+    /// <summary>
+    /// Style for a module on the category window when the module is not enabled
+    /// </summary>
     [JsonProperty("CategoryModuleOff")]
     public ElementStyleTheme CategoryModuleOff { get; set; } = new ElementStyleTheme();
 
+    /// <summary>
+    /// Style for a module on the category window when the module is enabled
+    /// </summary>
     [JsonProperty("CategoryModuleOn")]
     public ElementStyleTheme CategoryModuleOn { get; set; } = new ElementStyleTheme();
-
-    [JsonProperty("CloseButton")]
-    public ElementStyleTheme CloseButton { get; set; } = new ElementStyleTheme();
 
     [JsonProperty("SettingsWindow")]
     public WindowStyleTheme SettingsWindow { get; set; } = new WindowStyleTheme();
 
+    /// <summary>
+    /// Style for the close button present at top right corner of the Settings window or the Multiselect window
+    /// </summary>
+    [JsonProperty("CloseButton")]
+    public ElementStyleTheme CloseButton { get; set; } = new ElementStyleTheme();
+
+    /// <summary>
+    /// Style for the button, like Bool Setting, of a settings window not including the text of the setting
+    /// </summary>
     [JsonProperty("SettingOff")]
     public ElementStyleTheme SettingOff { get; set; } = new ElementStyleTheme();
 
+    /// <summary>
+    /// Style for the button, like Bool Setting, of a settings window not including the text of the setting
+    /// </summary>
     [JsonProperty("SettingOn")]
     public ElementStyleTheme SettingOn { get; set; } = new ElementStyleTheme();
 
+    /// <summary>
+    /// Style for the single click button
+    /// </summary>
     [JsonProperty("ButtonSetting", NullValueHandling = NullValueHandling.Ignore)]
     public ElementStyleTheme ButtonSetting { get; set; }
 
+    /// <summary>
+    /// Style for the Reset button present at the right side of every setting
+    /// </summary>
     [JsonProperty("ResetButton", NullValueHandling = NullValueHandling.Ignore)]
     public ElementStyleTheme ResetButton { get; set; }
 
+    /// <summary>
+    /// Style for the +Add button present at the botton of a List string setting
+    /// </summary>
     [JsonProperty("ListAddButton", NullValueHandling = NullValueHandling.Ignore)]
     public ElementStyleTheme ListAddButton { get; set; }
 
+    /// <summary>
+    /// Style for the - button present at the right side of each text field in place of the reset button
+    /// </summary>
     [JsonProperty("ListRemoveButton", NullValueHandling = NullValueHandling.Ignore)]
     public ElementStyleTheme ListRemoveButton { get; set; }
 
+    /// <summary>
+    /// Style colors for the text
+    /// </summary>
     [JsonProperty("Typography")]
     public TypographyTheme Typography { get; set; } = new TypographyTheme();
 
@@ -222,6 +291,9 @@ public class ThemeData
     [JsonProperty("Slider", NullValueHandling = NullValueHandling.Ignore)]
     public SliderTheme Slider { get; set; }
 
+    /// <summary>
+    /// Style for the Section Setting
+    /// </summary>
     [JsonProperty("Section", NullValueHandling = NullValueHandling.Ignore)]
     public SectionSettingTheme Section { get; set; }
 }
