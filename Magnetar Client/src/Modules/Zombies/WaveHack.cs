@@ -38,6 +38,9 @@ public class WaveHack : Module
     public IntSetting ZombiesCountMultiplier;
     public FloatSetting SpawnDelay;
 
+    // Extra
+    public BoolSetting TotalClearance;
+
     public WaveHack()
     {
         instance = this;
@@ -57,6 +60,13 @@ public class WaveHack : Module
         SpawnDelay = new FloatSetting("Spawn Delay", 0, 3, 0.5f, 3);
 
         AddSettings(ZombiesCountMultiplier,SpawnDelay);
+        EndCategory();
+
+        CreateCategory("Extra");
+
+        TotalClearance = new("Total Clearance Mode", false);
+
+        AddSettings(TotalClearance);
         EndCategory();
 
     }
@@ -81,6 +91,9 @@ public class WaveHack : Module
         }
 
         last_val = BoardInstance.timeUntilNextWave;
+
+        if (TotalClearance.Value) BoardInstance.zombieSpawnHealth = 0;
+
     }
 
     [HarmonyPatch(typeof(BoardSpawner))]
