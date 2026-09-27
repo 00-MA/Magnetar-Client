@@ -38,9 +38,9 @@ public class ListStringSetting : Setting
     {
         Event e = Event.current;
         float elemH = Config.elementHeight;
-        float gap = Config.S(4f);
+        float gap = Config.S(6f);
         float resetBtnW = Config.S(22f);
-        float actionBtnW = Config.S(24f);
+        float actionBtnW = Config.S(22f);
 
         float addBtnW = Config.SettingWidth;
 
@@ -48,7 +48,7 @@ public class ListStringSetting : Setting
         float labelW = Mathf.Max(width * 0.35f, Config.S(120f));
         GUI.Label(new Rect(Config.indent, y, labelW, elemH), Translator.Translate(Name), Magnetar_Default.SettingLabelStyle);
 
-        float rightBoxW = width - Config.indent * 2f - labelW - Config.S(10f);
+        float rightBoxW = width - Config.indent * 2f - labelW;
         float startX = width - Config.indent - rightBoxW;
 
         int removeIndex = -1;

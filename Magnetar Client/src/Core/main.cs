@@ -54,7 +54,7 @@ public class main : BasePlugin
     {
         Api.Api.EarlyInitializeCore?.Invoke();
 
-        SaveLoad.InitializePrefrences();
+        SaveLoad.InitializePreferences();
         Utils.Translator.LoadTranslations();
 
         // Load theme definitions from JSON first so they are known to the system
@@ -90,7 +90,7 @@ public class main : BasePlugin
 
         SaveLoad.Save(true);
         Api.Api.OnConfigSaved?.Invoke();
-        DebugLogger.Msg("Magnetar Prefrences Saved!");
+        DebugLogger.Msg("Magnetar Preferences Saved!");
     }
 
     public void CoreGUI()

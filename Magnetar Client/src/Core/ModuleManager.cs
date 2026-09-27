@@ -751,7 +751,7 @@ internal static class SettingsWindowDrawer
             e.Use();
         }
 
-        y += elemH + Config.spacing / 2;
+        y += elemH + Config.spacing;
 
         return y - startY;
     }

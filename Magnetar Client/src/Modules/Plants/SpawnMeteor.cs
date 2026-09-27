@@ -39,7 +39,7 @@ public class SpawnMeteor : Module
 
         CreateCategory("General");
 
-        MeteorSectionSetting = new("Prefrences",
+        MeteorSectionSetting = new("Preferences",
             (index) => new List<Setting>
             {
                 new SelectSetting("Meteor Type", 0)

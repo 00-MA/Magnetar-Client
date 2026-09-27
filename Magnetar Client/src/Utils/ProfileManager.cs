@@ -117,13 +117,13 @@ public static class ProfileManager
         _ = ConfigDir;
 
 #if MELONLOADER || RELEASE_MELON
-        prefCurrentProfile = Prefrences.MagnetarCategory.CreateEntry("CurrentProfile", DefaultProfile, "Active Profile");
+        prefCurrentProfile = Preferences.MagnetarCategory.CreateEntry("CurrentProfile", DefaultProfile, "Active Profile");
 #elif BEPINEX || RELEASE_BEPINEX
         try
         {
-            if (Prefrences.BepInExConfig != null)
+            if (Preferences.BepInExConfig != null)
             {
-                prefCurrentProfile = Prefrences.BepInExConfig.Bind("ProfileManager", "CurrentProfile", DefaultProfile, "Active Profile");
+                prefCurrentProfile = Preferences.BepInExConfig.Bind("ProfileManager", "CurrentProfile", DefaultProfile, "Active Profile");
             }
         }
         catch (Exception ex)
@@ -153,13 +153,13 @@ public static class ProfileManager
         else
         {
             Config.CurrentProfile = DefaultProfile;
-            SaveCurrentProfileToPrefrences(DefaultProfile);
+            SaveCurrentProfileToPreferences(DefaultProfile);
         }
 
         AutoSaveLogger.Msg($"Profile Manager initialized. Directory: '{ConfigDir}', Active profile: '{Config.CurrentProfile}'");
     }
 
-    private static void SaveCurrentProfileToPrefrences(string profileName)
+    private static void SaveCurrentProfileToPreferences(string profileName)
     {
         try
         {
@@ -167,13 +167,13 @@ public static class ProfileManager
             if (prefCurrentProfile != null)
             {
                 prefCurrentProfile.Value = profileName;
-                Prefrences.MagnetarCategory.SaveToFile();
+                Preferences.MagnetarCategory.SaveToFile();
             }
 #elif BEPINEX || RELEASE_BEPINEX
-            if (prefCurrentProfile != null && Prefrences.BepInExConfig != null)
+            if (prefCurrentProfile != null && Preferences.BepInExConfig != null)
             {
                 prefCurrentProfile.Value = profileName;
-                Prefrences.BepInExConfig.Save();
+                Preferences.BepInExConfig.Save();
             }
 #endif
         }
@@ -306,7 +306,7 @@ public static class ProfileManager
         Profiles.Add(profileName);
         Config.CurrentProfile = profileName;
 
-        SaveCurrentProfileToPrefrences(profileName);
+        SaveCurrentProfileToPreferences(profileName);
         SaveLoad.Save(force: true);
         Config.showgui = true;
 
@@ -330,7 +330,7 @@ public static class ProfileManager
         }
 
         Config.CurrentProfile = targetProfile;
-        SaveCurrentProfileToPrefrences(targetProfile);
+        SaveCurrentProfileToPreferences(targetProfile);
 
         SaveLoad.Load();
         Config.showgui = true;
@@ -370,7 +370,7 @@ public static class ProfileManager
         {
             ResetAllModulesToDefault();
             Config.CurrentProfile = DefaultProfile;
-            SaveCurrentProfileToPrefrences(DefaultProfile);
+            SaveCurrentProfileToPreferences(DefaultProfile);
             SaveLoad.Load();
         }
 

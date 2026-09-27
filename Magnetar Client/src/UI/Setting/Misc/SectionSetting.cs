@@ -112,8 +112,8 @@ public class SectionSetting : Setting
     {
         Event e = Event.current;
         float elemH = Config.elementHeight;
-        float actionBtnW = Config.S(24f);
-        float gap = Config.S(4f);
+        float actionBtnW = Config.S(22f);
+        float gap = Config.S(6f);
 
         // 1. Group Header
         string title = $"{Translator.Translate(Name)} ({Sections.Count})";

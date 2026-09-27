@@ -387,10 +387,10 @@ public static class Magnetar_Default
             new ColorState("#000000FF", "#000000FF", "#000000FF"),
             new ColorState("#FF3D3DFF", "#F03333FF", "#F03333FF")
         ),
-        SettingsWindow = new WindowStyleTheme("#000000FF", "#FF3D3DFF", "#1A1A1ADC"),
+        SettingsWindow = new WindowStyleTheme("#000000FF", "#FF3D3DFF", "#1A1A1AEE"),
         SettingOff = new ElementStyleTheme(
             new ColorState("#AEAEAEFF", "#FFFFFFFF", "#FFFFFFFF"),
-            new ColorState("#1C1C1CD6", "#1C1C1CFF", "#1C1C1CFF")
+            new ColorState("#242424DC", "#333333FF", "#1C1C1CFF")
         ),
         SettingOn = new ElementStyleTheme(
             new ColorState("#000000FF", "#000000FF", "#000000FF"),
@@ -405,8 +405,8 @@ public static class Magnetar_Default
             new ColorState("#242424DC", "#333333FF", "#1C1C1CFF")
         ),
         ListAddButton = new ElementStyleTheme(
-            new ColorState("#FFFFFFFF", "#FFFFFFFF", "#FFFFFFFF"),
-            new ColorState("#005213DC", "#00751bFF", "#008f21FF")
+            new ColorState("#000000FF", "#000000FF", "#000000FF"),
+            new ColorState("#FF3D3DFF", "#F03333FF", "#F03333FF")
         ),
         ListRemoveButton = new ElementStyleTheme(
             new ColorState("#FF6B6BFF", "#FF8E8EFF", "#FF3D3DFF"),
@@ -436,8 +436,8 @@ public static class Magnetar_Default
             Description = "#BFBFBFFF",
             Label = "#E6E6E6FF",
             Author = "#808080FF",
-            Text = "#E6E6E6FF",
-            Secondary = "#AEAEAEFF",
+            Text = "#FFFFFFFF",
+            Secondary = "#FFFFFFFF",
             HighlightText = "#FFFFFFFF",
             HighlightBackground = "#FF3D3DFF"
         },
@@ -489,7 +489,7 @@ public static class Magnetar_Default
     private const int SettingFontSize = 12;
     private const int SettingPaddingLeft = 10;
 
-    private const int DescriptionFontSize = 18;
+    private const int DescriptionFontSize = 14;
     private const int DescriptionPaddingLR = 5;
     private const int DescriptionPaddingTB = 2;
 

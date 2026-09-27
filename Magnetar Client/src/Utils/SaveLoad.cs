@@ -668,27 +668,27 @@ public static class SaveLoad
         }
     }
 
-    public static void InitializePrefrences()
+    public static void InitializePreferences()
     {
 #if MELONLOADER || RELEASE_MELON
-        Prefrences.MagnetarCategory = MelonPreferences.CreateCategory("Magnetar Client", "Magnetar Client");
+        Preferences.MagnetarCategory = MelonPreferences.CreateCategory("Magnetar Client", "Magnetar Client");
 
-        Prefrences.ShowFloatingIconEntry = Prefrences.MagnetarCategory.CreateEntry<bool>("ShowFloatingIcon",
+        Preferences.ShowFloatingIconEntry = Preferences.MagnetarCategory.CreateEntry<bool>("ShowFloatingIcon",
             false,
             "Show Floating Icon", "Display floating draggable menu button.");
 
-        if (Prefrences.ShowFloatingIconEntry != null)
+        if (Preferences.ShowFloatingIconEntry != null)
         {
-            Config.ShowFloatingIcon = Prefrences.ShowFloatingIconEntry.Value;
+            Config.ShowFloatingIcon = Preferences.ShowFloatingIconEntry.Value;
         }
 
-        Prefrences.ShowMobileButtonsEntry = Prefrences.MagnetarCategory.CreateEntry<bool>("ShowMobileButtons",
+        Preferences.ShowMobileButtonsEntry = Preferences.MagnetarCategory.CreateEntry<bool>("ShowMobileButtons",
             false,
             "Show Mobile Buttons", "Display top-right close buttons on popup windows.");
 
-        if (Prefrences.ShowMobileButtonsEntry != null)
+        if (Preferences.ShowMobileButtonsEntry != null)
         {
-            Config.ShowMobileButtons = Prefrences.ShowMobileButtonsEntry.Value;
+            Config.ShowMobileButtons = Preferences.ShowMobileButtonsEntry.Value;
         }
 #elif BEPINEX || RELEASE_BEPINEX
         try
@@ -697,9 +697,9 @@ public static class SaveLoad
             if (!Directory.Exists(configDir)) Directory.CreateDirectory(configDir);
             string configFilePath = Path.Combine(configDir, "Magnetar_Client.cfg");
             
-            Prefrences.BepInExConfig = new ConfigFile(configFilePath, true);
+            Preferences.BepInExConfig = new ConfigFile(configFilePath, true);
             
-            Prefrences.ShowFloatingIconEntry = Prefrences.BepInExConfig.Bind<bool>("UI", "ShowFloatingIcon",
+            Preferences.ShowFloatingIconEntry = Preferences.BepInExConfig.Bind<bool>("UI", "ShowFloatingIcon",
 #if ANDROID
                 true,
 #else
@@ -707,12 +707,12 @@ public static class SaveLoad
 #endif
                 "Display floating draggable menu button.");
 
-            if (Prefrences.ShowFloatingIconEntry != null)
+            if (Preferences.ShowFloatingIconEntry != null)
             {
-                Config.ShowFloatingIcon = Prefrences.ShowFloatingIconEntry.Value;
+                Config.ShowFloatingIcon = Preferences.ShowFloatingIconEntry.Value;
             }
 
-            Prefrences.ShowMobileButtonsEntry = Prefrences.BepInExConfig.Bind<bool>("UI", "ShowMobileButtons",
+            Preferences.ShowMobileButtonsEntry = Preferences.BepInExConfig.Bind<bool>("UI", "ShowMobileButtons",
 #if ANDROID
                 true,
 #else
@@ -720,9 +720,9 @@ public static class SaveLoad
 #endif
                 "Display top-right close buttons on popup windows.");
 
-            if (Prefrences.ShowMobileButtonsEntry != null)
+            if (Preferences.ShowMobileButtonsEntry != null)
             {
-                Config.ShowMobileButtons = Prefrences.ShowMobileButtonsEntry.Value;
+                Config.ShowMobileButtons = Preferences.ShowMobileButtonsEntry.Value;
             }
         }
         catch (Exception ex)

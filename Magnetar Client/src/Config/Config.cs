@@ -79,15 +79,15 @@ public static class Config
             _showMobileButtons = value;
 
 #if MELONLOADER || RELEASE_MELON
-            if (Prefrences.ShowMobileButtonsEntry != null)
+            if (Preferences.ShowMobileButtonsEntry != null)
             {
-                Prefrences.ShowMobileButtonsEntry.Value = value;
+                Preferences.ShowMobileButtonsEntry.Value = value;
             }
 #elif BEPINEX || RELEASE_BEPINEX || ANDROID
-            if (Prefrences.ShowMobileButtonsEntry != null)
+            if (Preferences.ShowMobileButtonsEntry != null)
             {
-                Prefrences.ShowMobileButtonsEntry.Value = value;
-                Prefrences.BepInExConfig?.Save();
+                Preferences .ShowMobileButtonsEntry.Value = value;
+                Preferences.BepInExConfig?.Save();
             }
 #endif
             Utils.SaveLoad.Save();
@@ -111,15 +111,15 @@ public static class Config
     {
         ShowFloatingIcon = enabled;
 #if MELONLOADER || RELEASE_MELON
-    if (Prefrences.ShowFloatingIconEntry != null)
+    if (Preferences.ShowFloatingIconEntry != null)
     {
-        Prefrences.ShowFloatingIconEntry.Value = enabled;
+        Preferences.ShowFloatingIconEntry.Value = enabled;
     }
 #elif BEPINEX || RELEASE_BEPINEX || ANDROID
-        if (Prefrences.ShowFloatingIconEntry != null)
+        if (Preferences.ShowFloatingIconEntry != null)
         {
-            Prefrences.ShowFloatingIconEntry.Value = enabled;
-            Prefrences.BepInExConfig?.Save();
+            Preferences.ShowFloatingIconEntry.Value = enabled;
+            Preferences.BepInExConfig?.Save();
         }
 #endif
         Utils.SaveLoad.Save();
@@ -138,7 +138,7 @@ public static class Config
     private const float BaseElementHeight = 22f;
     public static float elementHeight => S(BaseElementHeight);
 
-    private const float BaseIndent = 10f;
+    private const float BaseIndent = 8f;
     public static float indent => S(BaseIndent);
 
     private const float BaseSpacing = 6f;
@@ -176,7 +176,7 @@ public static class Config
         }
     }
 
-    private static float _baseSettingWidth = 260f;
+    private static float _baseSettingWidth = 200f;
     public static float SettingWidth
     {
         get => S(_baseSettingWidth);
@@ -231,6 +231,19 @@ public static class Config
 
     public static class SettingsInput
     {
+        private static float _baseResetButtonW = 22;
+        public static float ResetButtonW
+        {
+            get => S(_baseResetButtonW);
+            set => _baseResetButtonW = value;
+        }
+        private static float _baseGap = 6;
+        public static float Gap
+        {
+            get => S(_baseGap);
+            set => _baseGap = value;
+        }
+
         // Numeric Sliders
         private static float _baseNumericInputWidth = 75f;
         public static float NumericInputWidth
@@ -243,7 +256,7 @@ public static class Config
         // not a pixel size, so it does not scale with GUIScale.
         public static float SliderScrollStep = 0.04f;
 
-        private static float _baseSliderHeight = 8f;
+        private static float _baseSliderHeight = 7f;
         public static float SliderHeight
         {
             get => S(_baseSliderHeight);
@@ -334,7 +347,7 @@ public static class Config
     }
 }
 
-public static class Prefrences
+public static class Preferences
 {
 #if MELONLOADER || RELEASE_MELON
     public static MelonPreferences_Category MagnetarCategory;

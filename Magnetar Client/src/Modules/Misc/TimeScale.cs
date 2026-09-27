@@ -56,7 +56,7 @@ public class TimeScale : Module
         EndCategory();
         CreateCategory("Buttons");
 
-        ButtonsSection = new("Prefrences",
+        ButtonsSection = new("Preferences",
             (index) => new List<Setting>
             {
                 new FloatSetting("Speed setting", 0f, 10f, 1f, 3, 0),
