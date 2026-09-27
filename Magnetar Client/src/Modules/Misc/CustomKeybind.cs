@@ -5,6 +5,8 @@ using System.Linq;
 using UnityEngine;
 using static Magnetar_Client.Game.AppData;
 using static Magnetar_Client.Utils.Magnetar_Logger;
+using UnityEngine.UI;
+
 #if MELONLOADER || RELEASE_MELON
 using Il2Cpp;
 #endif
@@ -35,6 +37,7 @@ public class CustomKeybind : Module
     //public BindSetting Rhythm3;
     //public BindSetting Rhythm4;
 
+    public BindSetting ToggleUI;
     public BindSetting SlowMode;
     public BindSetting ShowPlantHP;
     public BindSetting ShowZombieHP;
@@ -94,8 +97,9 @@ public class CustomKeybind : Module
         SlowMode = new BindSetting("Toggle Slow Mode",new List<KeyCode>{ KeyCode.Alpha3 });
         ShowPlantHP = new BindSetting("Show Plant HP", new List<KeyCode> {KeyCode.Q});
         ShowZombieHP = new BindSetting("Show Zombie HP", new List<KeyCode> { KeyCode.W });
+        ToggleUI = new("Toggle UI", new List<KeyCode> { KeyCode.F1 });
 
-        AddSettings(SlowMode, ShowPlantHP,ShowZombieHP);
+        AddSettings(SlowMode, ShowPlantHP,ShowZombieHP, ToggleUI);
 
         CreateCategory("Application");
 
@@ -167,6 +171,21 @@ public class CustomKeybind : Module
             }  
             if (GetKeyComboDown(ShowPlantHP.BindKeys)) BoardInstance.ShowPlantHealth();
             if (GetKeyComboDown(ShowZombieHP.BindKeys)) BoardInstance.ShowZombieHealth();
+            if (GetKeyComboDown(ToggleUI.BindKeys))
+            {
+                if (GameAPP.canvas != null && GameAPP.canvasUp != null)
+                {
+                    CanvasGroup canvasGroup = GameAPP.canvas.GetComponent<CanvasGroup>();
+                    CanvasGroup canvasGroupUp = GameAPP.canvasUp.GetComponent<CanvasGroup>();
+
+                    if (canvasGroup != null && canvasGroupUp != null)
+                    {
+                        float newAlpha = (canvasGroup.alpha == 1f) ? 0f : 1f;
+                        canvasGroup.alpha = newAlpha;
+                        canvasGroupUp.alpha = newAlpha;
+                    }
+                }
+            }
 
         }
 
@@ -300,7 +319,7 @@ public class CustomKeybind : Module
 
     #endregion
 
-    #region Plant/Zombie HP
+    #region Board
 
     [HarmonyPatch(typeof(Board))]
     public static class BoardHPPatch
@@ -328,6 +347,24 @@ public class CustomKeybind : Module
 #endif
             return false;
 
+        }
+
+        [HarmonyPatch(nameof(Board.Update))]
+        [HarmonyPrefix]
+        public static void BoardPrefix()
+        {
+            if (instance == null || !instance.Active)
+                return;
+            InputPatch.BoardBlockKeys = true;
+        }
+
+        [HarmonyPatch(nameof(Board.Update))]
+        [HarmonyPostfix]
+        public static void BoardPostfix()
+        {
+            if (instance == null || !instance.Active)
+                return;
+            InputPatch.BoardBlockKeys = false;
         }
     }
 
@@ -402,33 +439,46 @@ public class CustomKeybind : Module
         {
             if (instance == null || !instance.Active)
                 return;
-            InputPatch.blockKeys = true;
+            InputPatch.GameAPPBlockKeys = true;
         }
 
         [HarmonyPatch(nameof(GameAPP.Update))]
         [HarmonyPostfix]
         public static void UpdatePostfix()
         {
-            InputPatch.blockKeys = false;
+            InputPatch.GameAPPBlockKeys = false;
         }
     }
+
+    #endregion
 
     [HarmonyPatch(typeof(Input))]
     public static class InputPatch
     {
-        public static bool blockKeys;
+        public static bool GameAPPBlockKeys;
 
         [HarmonyPatch(nameof(Input.GetKeyDown), new System.Type[] { typeof(KeyCode) })]
         [HarmonyPrefix]
-        public static bool GetKeyDown(KeyCode key)
+        public static bool GameAPPGetKeyDown(KeyCode key)
         {
-            if (blockKeys && (key == KeyCode.F || key == KeyCode.G))
+            if (GameAPPBlockKeys && (key == KeyCode.F || key == KeyCode.G))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public static bool BoardBlockKeys;
+
+        [HarmonyPatch(nameof(Input.GetKeyDown), new System.Type[] { typeof(KeyCode) })]
+        [HarmonyPrefix]
+        public static bool BoardGetKeyDown(KeyCode key)
+        {
+            if (BoardBlockKeys && (key == KeyCode.F1))
             {
                 return false;
             }
             return true;
         }
     }
-
-    #endregion
 }
