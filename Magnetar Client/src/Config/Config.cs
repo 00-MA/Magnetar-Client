@@ -90,7 +90,6 @@ public static class Config
                 Preferences.BepInExConfig?.Save();
             }
 #endif
-            Utils.SaveLoad.Save();
         }
     }
 
