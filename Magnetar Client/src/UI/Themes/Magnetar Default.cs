@@ -458,7 +458,7 @@ public static class Magnetar_Default
         lastElementScale = -1f;
         Rescale();
 
-        DebugLogger.Msg($"[Themes] Initialized with theme: '{CurrentThemeName}'");
+        GUILogger.Msg($"[Themes] Initialized with theme: '{CurrentThemeName}'");
     }
 
     public static void LoadThemesFromJson()
@@ -603,7 +603,7 @@ public static class Magnetar_Default
         }
         catch (Exception ex)
         {
-            DebugLogger.Error($"[Themes] Error loading themes.json, falling back to internal default: {ex.Message}");
+            GUILogger.Error($"[Themes] Error loading themes.json, falling back to internal default: {ex.Message}");
         }
     }
 
@@ -617,7 +617,7 @@ public static class Magnetar_Default
 
         if (!LoadedThemes.TryGetValue(themeName, out var theme))
         {
-            DebugLogger.Warning($"[Themes] Theme '{themeName}' not found. Falling back to default.");
+            GUILogger.Warning($"[Themes] Theme '{themeName}' not found. Falling back to default.");
             theme = InternalDefaultTheme;
             themeName = InternalDefaultTheme.Name;
         }
