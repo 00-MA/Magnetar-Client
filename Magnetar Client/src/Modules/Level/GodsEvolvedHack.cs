@@ -27,6 +27,7 @@ public class GodsEvolvedHack : Module
     // Mod Data
     public static GodsEvolvedHack instance;
 
+    public LabelSetting WeightsInfoLabel;
 
     public BoolSetting LockQualityWeights;
     public FloatSetting QualityDefaultWeight;
@@ -69,40 +70,50 @@ public class GodsEvolvedHack : Module
 
         CreateCategory("Quality Weight");
 
-        LockQualityWeights = new("Lock Quality Weights", false);
+        WeightsInfoLabel = new("The weight values are synced to level");
 
-        QualityDefaultWeight = new FloatSetting("Default Quality Weight", 0, 100, 50, 2, 0)
+        LockQualityWeights = new("Lock Weight Values", false);
+
+        QualityDefaultWeight = new("Default Quality Weight", 0, 100, 50, 2, 0)
         {
             OnValueChanged = x => ApplySingleWeight(Quality.Default, x)
         };
-        QualitySilverWeight = new FloatSetting("Silver Quality Weight", 0, 100, 50, 2, 0)
+        QualitySilverWeight = new("Silver Quality Weight", 0, 100, 50, 2, 0)
         {
             OnValueChanged = x => ApplySingleWeight(Quality.silver, x)
         };
-        QualityGoldtWeight = new FloatSetting("Gold Quality Weight", 0, 100, 50, 2, 0)
+        QualityGoldtWeight = new("Gold Quality Weight", 0, 100, 50, 2, 0)
         {
             OnValueChanged = x => ApplySingleWeight(Quality.gold, x)
         };
-        QualityDiamondWeight = new FloatSetting("Diamond Quality Weight", 0, 100, 50, 2, 0)
+        QualityDiamondWeight = new("Diamond Quality Weight", 0, 100, 50, 2, 0)
         {
             OnValueChanged = x => ApplySingleWeight(Quality.diamond, x)
         };
-        QualityCurseWeight = new FloatSetting("Curse Quality Weight", 0, 100, 0, 2, 0)
+        QualityCurseWeight = new("Curse Quality Weight", 0, 100, 0, 2, 0)
         {
             OnValueChanged = x => ApplySingleWeight(Quality.curse, x)
         };
-        QualityIridescentWeight = new FloatSetting("Iridescent Quality Weight", 0, 100, 0, 2, 0)
+        QualityIridescentWeight = new("Iridescent Quality Weight", 0, 100, 0, 2, 0)
         {
             OnValueChanged = x => ApplySingleWeight(Quality.iridescent, x)
         };
-        QualityRandomWeight = new FloatSetting("Random Quality Weight", 0, 100, 0, 2, 0)
+        QualityRandomWeight = new("Random Quality Weight", 0, 100, 0, 2, 0)
         {
             OnValueChanged = x => ApplySingleWeight(Quality.random, x)
         };
 
-        AddSettings(LockQualityWeights,
-            QualityDefaultWeight, QualitySilverWeight, QualityGoldtWeight, QualityDiamondWeight,
-            QualityCurseWeight, QualityIridescentWeight, QualityRandomWeight);
+        AddSettings(
+            WeightsInfoLabel,
+            LockQualityWeights,
+            QualityDefaultWeight,
+            QualitySilverWeight,
+            QualityGoldtWeight,
+            QualityDiamondWeight,
+            QualityCurseWeight,
+            QualityIridescentWeight,
+            QualityRandomWeight
+            );
         EndCategory();
     }
 
