@@ -105,7 +105,7 @@ public class FasterPlants : Module
         for (int i = sections.Count - 1; i >= 0; i--)
         {
             var sec = sections[i];
-            if (sec.Find("Entities") is MultiSelectSetting secMulti && secMulti.IsSelected(plantId))
+            if (sec.Find<MultiSelectSetting>("Entities", out var secMulti) && secMulti.IsSelected(plantId))
             {
                 var atk = sec.Find<FloatSetting>("Attack Interval");
                 var anim = sec.Find<FloatSetting>("Animation Speed");
@@ -139,8 +139,6 @@ public class FasterPlants : Module
 
         foreach (var plant in GameData.PlantList)
         {
-            if (plant == null) continue;
-
             int plantId = (int)plant.thePlantType;
             bool isTargeted = TryGetPlantMultipliers(plantId, out float attackMult, out float animMult, out float produceMult);
 

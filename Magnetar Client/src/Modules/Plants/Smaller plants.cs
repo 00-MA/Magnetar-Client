@@ -26,8 +26,10 @@ public class SmallerPlants : Module
     public static SmallerPlants instance;
 
     public FloatSetting plantSize;
-    public MultiSelectSetting selectedPlants;
+    public MultiSelectSetting PlantsSelectedSetting;
 
+    public LabelSetting AdvancedLabel;
+    public SectionSetting IndividualPlantsSectionSetting;
 
     public SmallerPlants()
     {
@@ -37,26 +39,75 @@ public class SmallerPlants : Module
 
         plantSize = new FloatSetting("Scale multiplier", 0.5f, 2f, 0.75f, 3, 0f);
 
-        selectedPlants = new MultiSelectSetting("Entities", typeof(PlantType))
+        PlantsSelectedSetting = new MultiSelectSetting("Entities", typeof(PlantType))
         {
             Blacklist = Banned.PlantTypeBanned,
             CustomNames = TranslatedNames(typeof(PlantType))
         };
-        selectedPlants.SelectAll(setDefault: true);
+        PlantsSelectedSetting.SelectAll(setDefault: true);
 
-        AddSettings(plantSize, selectedPlants);
+        AddSettings(plantSize, PlantsSelectedSetting);
 
         EndCategory();
 
+        CreateCategory("Advanced");
 
+        AdvancedLabel = new("Modifications done here are preferred over Global modifications");
+
+        IndividualPlantsSectionSetting = new SectionSetting("Individual Plant",
+            (index) => new List<Setting>
+            {
+                new MultiSelectSetting("Entities", typeof(PlantType))
+                {
+                    Blacklist = Banned.PlantTypeBanned,
+                    CustomNames = TranslatedNames(typeof(PlantType))
+                },
+                new FloatSetting("Scale multiplier", 0.5f, 2f, 1f, 3, 0f),
+            }, 0);
+
+        AddSettings(AdvancedLabel, IndividualPlantsSectionSetting);
+        EndCategory();
     }
 
     public override void OnLanguageChanged()
     {
-        selectedPlants.CustomNames = TranslatedNames(typeof(PlantType));
+        PlantsSelectedSetting.CustomNames = TranslatedNames(typeof(PlantType));
+        foreach (var section in IndividualPlantsSectionSetting.Sections)
+        {
+            if (section.Find<MultiSelectSetting>("Entities", out var setting))
+            {
+                setting.CustomNames = TranslatedNames(typeof(PlantType));
+            }
+        }
     }
 
     // Mod Logic
+
+    private bool TryGetPlantMultipliers(int plantId, out float scaleMult)
+    {
+        var sections = IndividualPlantsSectionSetting.Sections;
+        for (int i = sections.Count - 1; i >= 0; i--)
+        {
+            var sec = sections[i];
+            if (sec.Find<MultiSelectSetting>("Entities", out var secMulti) && secMulti.IsSelected(plantId))
+            {
+                var scale = sec.Find<FloatSetting>("Scale multiplier");
+
+                scaleMult = scale != null ? scale.Value : 1f;
+                return true;
+            }
+        }
+
+        if (PlantsSelectedSetting.IsSelected(plantId))
+        {
+            scaleMult = plantSize.Value;
+            return true;
+        }
+
+        scaleMult = 1f;
+        return false;
+    }
+
     Dictionary<Plant, Vector3> originalthePlantScale = new();
     public override void OnUpdateActive()
     {
@@ -64,29 +115,26 @@ public class SmallerPlants : Module
 
         foreach (var plant in GameData.PlantList)
         {
+            int plantId = (int)plant.thePlantType;
+            bool isTargeted = TryGetPlantMultipliers(plantId, out float scaleMult);
 
-            // Check if the plant is selected and if we haven't already stored its original scale
-            if (selectedPlants.IsSelected((int)plant.thePlantType) &&
-                !originalthePlantScale.ContainsKey(plant))
+            if (isTargeted)
             {
-                originalthePlantScale[plant] = plant.transform.localScale;
-            }
-
-            // Check if the plant is deselected while the module is running 
-            if (!selectedPlants.IsSelected((int)plant.thePlantType) &&
-                originalthePlantScale.ContainsKey(plant))
-            {
-                plant.transform.localScale = originalthePlantScale[plant];
-                originalthePlantScale.Remove(plant);
-            }
-
-            // Update the Scale
-            if (originalthePlantScale.ContainsKey(plant))
-            {
-                if (plant.transform.localScale != originalthePlantScale[plant] * plantSize.Value)
+                if (!originalthePlantScale.ContainsKey(plant))
                 {
-                    plant.transform.localScale = originalthePlantScale[plant] * plantSize.Value;
+                    originalthePlantScale[plant] = plant.transform.localScale;
                 }
+
+                Vector3 targetScale = originalthePlantScale[plant] * scaleMult;
+                if (plant.transform.localScale != targetScale)
+                {
+                    plant.transform.localScale = targetScale;
+                }
+            }
+            else if (originalthePlantScale.TryGetValue(plant, out Vector3 origScale))
+            {
+                plant.transform.localScale = origScale;
+                originalthePlantScale.Remove(plant);
             }
 
         }
@@ -97,9 +145,9 @@ public class SmallerPlants : Module
     {
         foreach (var plant in GameData.PlantList)
         {
-            if (originalthePlantScale.ContainsKey(plant))
+            if (originalthePlantScale.TryGetValue(plant, out var origScale))
             {
-                plant.transform.localScale = originalthePlantScale[plant];
+                plant.transform.localScale = origScale;
             }
         }
 
