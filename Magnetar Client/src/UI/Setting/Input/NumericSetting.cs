@@ -109,59 +109,77 @@ public class IntSetting : Setting
         Rect resetRect = new(resetStartX, y, resetBtnW, elemH);
         Rect inputRect = new(inputStartX, y, inputW, elemH);
         Rect sliderRect = new(sliderStartX, y + ((elemH - trackH) / 2f), sliderW, trackH);
-        Rect sliderHitBox = new(sliderStartX, y, sliderW, elemH);
 
-        // Label on the left fills remaining space
         float labelW = sliderStartX - indent - gap;
         GUI.Label(new Rect(indent, y, labelW, elemH), translatedName, Magnetar_Default.SettingLabelStyle);
 
-        float LogConvert(float v) => Mathf.Sign(v) * Mathf.Log10(Mathf.Abs(v) + 1.0f);
-        float ExpConvert(float l) => Mathf.Sign(l) * (Mathf.Pow(10.0f, Mathf.Abs(l)) - 1.0f);
+        Event e = Event.current;
 
-        float logMin = LogConvert(sliderMin);
-        float logMax = LogConvert(sliderMax);
-        float visualVal = Mathf.Clamp(val, sliderMin, sliderMax);
-        float logVal = LogConvert(visualVal);
-        float percentage = Mathf.Clamp01((logVal - logMin) / (logMax - logMin));
+        int sliderControlId = GUIUtility.GetControlID(name.GetHashCode(), FocusType.Passive);
+
+        float percentage = Mathf.Clamp01((val - sliderMin) / (sliderMax - sliderMin));
 
         float fillWidth = sliderRect.width * percentage;
         float thumbX = sliderRect.x + fillWidth - (thumbSize / 2f);
         float thumbY = sliderRect.y + (trackH / 2f) - (thumbSize / 2f);
         Rect thumbRect = new(thumbX, thumbY, thumbSize, thumbSize);
 
+        // Draw track & thumb
         GUI.Box(sliderRect, "", Magnetar_Default.SliderTrackOffStyle);
-        if (fillWidth > 0f) GUI.Box(new Rect(sliderRect.x, sliderRect.y, fillWidth, sliderRect.height), "", Magnetar_Default.SliderTrackOnStyle);
+        if (fillWidth > 0f)
+            GUI.Box(new Rect(sliderRect.x, sliderRect.y, fillWidth, sliderRect.height), "", Magnetar_Default.SliderTrackOnStyle);
         GUI.Box(thumbRect, "", Magnetar_Default.SliderThumbStyle);
 
-        Event e = Event.current;
-        void CommitSettingValue() { if (isFloat) ((FloatSetting)setting).Commit(); else ((IntSetting)setting).Commit(); }
+        void CommitSettingValue()
+        {
+            if (isFloat) ((FloatSetting)setting).Commit();
+            else ((IntSetting)setting).Commit();
+        }
 
         void ApplyFromMouseX(float mouseX)
         {
             float mousePct = Mathf.Clamp01((mouseX - sliderRect.x) / sliderRect.width);
-            float newVal = ExpConvert(logMin + (mousePct * (logMax - logMin)));
-            if (isFloat) ((FloatSetting)setting).SetPending((float)Math.Round(Mathf.Clamp(newVal, sliderMin, sliderMax), decPlaces));
-            else ((IntSetting)setting).SetPending((int)Math.Max(intSliderMin, Math.Min((long)newVal, intSliderMax)));
+            float newVal = Mathf.Lerp(sliderMin, sliderMax, mousePct);
+
+            if (isFloat)
+            {
+                float rounded = (float)Math.Round(newVal, decPlaces);
+                ((FloatSetting)setting).SetPending(Mathf.Clamp(rounded, sliderMin, sliderMax));
+            }
+            else
+            {
+                int intVal = Mathf.RoundToInt(newVal);
+                ((IntSetting)setting).SetPending(Math.Clamp(intVal, intSliderMin, intSliderMax));
+            }
         }
 
-        int sliderControlId = GUIUtility.GetControlID(name.GetHashCode(), FocusType.Passive);
-        bool inHitbox = sliderHitBox.Contains(e.mousePosition) || thumbRect.Contains(e.mousePosition);
+        // Expanded grab zone for thumb + track
+        Rect grabHitBox = new(sliderStartX - 8f, y - 2f, sliderW + 16f, elemH + 4f);
 
-        if (e.type == EventType.MouseDown && e.button == 0 && inHitbox)
+        if (e.type == EventType.MouseDown && e.button == 0)
         {
-            GUIUtility.hotControl = sliderControlId;
-            DrawSetting.activeSliderId = sliderControlId;
-            DrawSetting.activeNumericSetting = setting;
-            DrawSetting.focusedControlId = -1;
-            DrawSetting.activeTextFieldId = -1;
-            ApplyFromMouseX(e.mousePosition.x);
-            e.Use();
+            if (grabHitBox.Contains(e.mousePosition) || thumbRect.Contains(e.mousePosition))
+            {
+                GUIUtility.hotControl = sliderControlId;
+                GUIUtility.keyboardControl = 0;
+                DrawSetting.activeSliderId = sliderControlId;
+                DrawSetting.activeNumericSetting = setting;
+                DrawSetting.focusedControlId = -1;
+                DrawSetting.activeTextFieldId = -1;
+
+                ApplyFromMouseX(e.mousePosition.x);
+                e.Use();
+            }
         }
 
         if (GUIUtility.hotControl == sliderControlId)
         {
-            if (e.type == EventType.MouseDrag) { ApplyFromMouseX(e.mousePosition.x); e.Use(); }
-            else if (e.type == EventType.MouseUp || (e.type == EventType.Ignore && e.rawType == EventType.MouseUp))
+            if (e.type == EventType.MouseDrag)
+            {
+                ApplyFromMouseX(e.mousePosition.x);
+                e.Use();
+            }
+            else if (e.rawType == EventType.MouseUp || e.type == EventType.MouseUp)
             {
                 CommitSettingValue();
                 GUIUtility.hotControl = 0;
