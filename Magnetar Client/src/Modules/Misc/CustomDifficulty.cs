@@ -1,27 +1,20 @@
 ﻿using HarmonyLib;
 using Il2Cpp;
-using Il2CppGameLevel;
 using Il2CppTMPro;
 using Magnetar_Client.UI.Setting;
 using System.Collections.Generic;
-using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using static Magnetar_Client.Game.AppData;
-using static System.Net.Mime.MediaTypeNames;
-
 namespace Magnetar_Client.Modules;
 
 public class CustomDifficulty : Module
 {
     // Mod Info
     public override string Name { get; set; } = "Custom Difficulty";
-    public override string Description { get; set; } = "Dims the background while the module window is open.";
-    public override string SearchHints { get; set; } = "dimbackground transparentbackground backgrounddim " +
-        "backgroundtransparent dimmedbackground bgdim bgtransparent dimbg transparentbg darkerbackground " +
-        "lowopacitybackground glassbackground clearbackground seethroughbackground dimbackround dimbackgound " +
-        "transperent transparant transparents transperantbg transparantbg dimbackgorund opacitymultiplier hidebackground " +
-        "nobackground backgroundopacity backgroundalpha backgroundshade backgrounddarken backgroundblur";
+    public override string Description { get; set; } = "Allows you to modify difficulty settings.";
+    public override string SearchHints { get; set; } = "customdifficulty difficultymodifier difficultysettings scaledifficulty" +
+        " difficultyeditor game difficultyconfig difficultychanger hardmod easymod difficultybalancer customdifficultycustomizer" +
+        " diffeditor difficultyoverride adjustmentmod challengedifficulty difficultyselector diffmanager customchallenge";
 
     public override ModuleCategory Category { get; set; } = ModuleCategory.Misc;
 
@@ -29,7 +22,6 @@ public class CustomDifficulty : Module
 
     public static CustomDifficulty instance;
     public static int MaxDifficulty = 5;
-    public static int GameDifficulty = -1;
     public BoolSetting AllowSkinDifficultychange;
     public IntSetting MaxDifficultySetting;
 
@@ -70,15 +62,15 @@ public class CustomDifficulty : Module
             {
                 new IntSetting("Difficulty level",6,15,7,0),
                 new StringSetting("Difficulty Name", $"Custom difficulty: {index}"),
-                new FloatSetting("Zombie Insta-kill Threshold %", 0, 100, 40, 3, 0, 100),
-                new BoolSetting("Insta-kill ignore armor", false),
-                new FloatSetting("Odyssey Health multiplier", 1, 5, 1.5f, 3, 0.01f),
-                new FloatSetting("Convyer Interval", 0, 10, -1, 3),
-                new FloatSetting("First Wave Arrival Time", 0, 20, -1, 3),
                 new FloatSetting("Zombie Speed Multiplier", 0, 3, -1, 3),
-                new FloatSetting("Wave Interval", 0, 20, -1, 3),
                 new FloatSetting("Damage Reduction %", 0, 100, 60, 3, 0, 100),
                 new FloatSetting("Zombie Spawn Multiplier", 0.2f, 5, -1, 3, 0),
+                new FloatSetting("Zombie Insta-kill Threshold %", 0, 100, 40, 3, 0, 100),
+                new BoolSetting("Insta-kill ignore armor", false),
+                new FloatSetting("First Wave Arrival Time", 0, 20, -1, 3),
+                new FloatSetting("Wave Interval", 0, 20, -1, 3),
+                new FloatSetting("Odyssey Health multiplier", 1, 5, 1.5f, 3, 0.01f),
+                new FloatSetting("Convyer Interval", 0, 10, -1, 3),
             }, 0);
 
         AddSettings(AdvancedLabel, CustomDifficultySection);
@@ -341,7 +333,6 @@ public class CustomDifficulty : Module
             if (GameAPP.config != null)
             {
                 GameAPP.config.difficulty = targetDifficulty;
-                GameDifficulty = targetDifficulty;
             }
 
             if (label != null)
