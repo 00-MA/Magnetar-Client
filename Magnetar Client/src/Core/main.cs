@@ -55,8 +55,7 @@ public class main : BasePlugin
         Api.Api.EarlyInitializeCore?.Invoke();
 
         SaveLoad.InitializePreferences();
-        Utils.Translator.LoadTranslations();
-
+        
         // Load theme definitions from JSON first so they are known to the system
         UI.Themes.Magnetar_Default.LoadThemesFromJson();
 
@@ -65,6 +64,8 @@ public class main : BasePlugin
         NEFManager.Init();
         TopBar.Init();
         ProfileManager.Init();
+
+        Utils.Translator.LoadTranslations();
 
         // Load saved configurations (Config.Theme, Language, etc.)
         SaveLoad.Load();
