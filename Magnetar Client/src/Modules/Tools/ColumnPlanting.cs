@@ -72,6 +72,7 @@ public class MultiPlanting : Module
             if (spawnByMod) return;
             if (__result == null || instance == null || !instance.Active) return;
             if (theSeedType != Mouse.Instance.thePlantTypeOnMouse) return;
+            if (ColumnGlove.MouseGlovePatch.IsMovedByGlove) return;
 
             spawnByMod = true;
 

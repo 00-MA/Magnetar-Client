@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using System.Collections.Generic;
 using static Magnetar_Client.Game.GameData;
+using UnityEngine;
 #if MELONLOADER || RELEASE_MELON
 using Il2Cpp;
 #endif
@@ -28,46 +29,105 @@ public class ColumnGlove : Module
     [HarmonyPatch(typeof(Mouse), nameof(Mouse.TryToSetPlantByGlove))]
     public static class MouseGlovePatch
     {
+        public static bool IsMovedByGlove = false;
+
         [HarmonyPrefix]
-        public static bool Prefix(Mouse __instance)
+        public static void Prefix()
         {
-            if (instance == null || !instance.Active) return true;
+            IsMovedByGlove = true;
+        }
 
-            int newCol = __instance.theMouseColumn;
-            List<Plant> plants = new();
-
-            // Find all identical plants in the original column
-            foreach (var plant in PlantList)
-            {
-                if (plant == null || plant.gameObject == null) continue;
-
-                if (plant.thePlantColumn == __instance.thePlantOnGlove.thePlantColumn)
-                {
-                    if (plant != __instance.thePlantOnGlove && plant.thePlantType == __instance.thePlantOnGlove.thePlantType)
-                    {
-                        plants.Add(plant);
-                    }
-                }
-            }
-
-            // Replicate movement across the BoardInstance
-            foreach (var plant in plants)
-            {
-                Plant gameObject = CreatePlant.Instance.SetPlant(newCol, plant.thePlantRow, plant.thePlantType);
-
-                if (newCol == __instance.thePlantOnGlove.thePlantColumn)
-                {
-                    CreatePlant.Instance.SetPlant(newCol, __instance.thePlantOnGlove.thePlantRow, plant.thePlantType);
-                }
-                else
-                {
-                    if (gameObject != null && gameObject.TryGetComponent<Plant>(out var component) && component != null)
-                    {
-                        plant.Die(Plant.DieReason.ByMix);
-                    }
-                }
-            }
-            return true;
+        [HarmonyPostfix]
+        public static void Postfix()
+        {
+            IsMovedByGlove = false;
         }
     }
+
+    [HarmonyPatch(typeof(CreatePlant))]
+    public static class CreatePlantPatch
+    {
+        private static bool _isByMod = false;
+
+        [HarmonyPatch(nameof(CreatePlant.SetPlant))]
+        [HarmonyPrefix]
+        public static bool SetPlantPrefix(
+            CreatePlant __instance,
+            ref Plant __result,
+            int newColumn,
+            int newRow,
+            PlantType theSeedType,
+            Plant targetPlant,
+            Vector2 puffV,
+            bool isFreeSet,
+            bool withEffect,
+            Plant hidplant)
+        {
+            if (_isByMod || !MouseGlovePatch.IsMovedByGlove) return true;
+            if (instance == null || !instance.Active) return true;
+
+            _isByMod = true;
+            try
+            {
+                int sourceColumn = targetPlant != null ? targetPlant.thePlantColumn : -1;
+
+                Plant newPlant = __instance.SetPlant(
+                    newColumn,
+                    newRow,
+                    theSeedType,
+                    targetPlant,
+                    puffV,
+                    isFreeSet,
+                    withEffect,
+                    hidplant
+                );
+
+                __result = newPlant;
+
+                if (newPlant != null && sourceColumn != -1 && sourceColumn != newColumn)
+                {
+                    List<Plant> plantsToMove = new();
+                    for (int i = 0; i < PlantList.Count; i++)
+                    {
+                        Plant plant = PlantList[i];
+                        if (plant != null &&
+                            plant != newPlant &&
+                            plant != targetPlant &&
+                            plant.thePlantColumn == sourceColumn)
+                        {
+                            plantsToMove.Add(plant);
+                        }
+                    }
+
+                    foreach (Plant plant in plantsToMove)
+                    {
+                        if (plant == null) continue;
+
+                        Plant shifted = __instance.SetPlant(
+                            newColumn,
+                            plant.thePlantRow,
+                            plant.thePlantType,
+                            null,
+                            Vector2.zero,
+                            false,
+                            false,
+                            null
+                        );
+
+                        if (shifted != null)
+                        {
+                            plant.Die();
+                        }
+                    }
+                }
+
+                return false;
+            }
+            finally
+            {
+                _isByMod = false;
+            }
+        }
+    }
+
 }
