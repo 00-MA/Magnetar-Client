@@ -21,6 +21,7 @@ public class LevelSetup : Module
     public static LevelSetup instance;
     public ButtonSetting SetGraves;
     public ButtonSetting SetFreezedPlants;
+    public ButtonSetting SpawnGraveZombies;
 
     public LevelSetup()
     {
@@ -30,8 +31,14 @@ public class LevelSetup : Module
 
         SetGraves = new ButtonSetting("Set Graves", SetGravesNow);
         SetFreezedPlants = new ButtonSetting("Set Freezed Plants", SetFreezedPlantsNow);
-
+        
         AddSettings(SetGraves, SetFreezedPlants);
+        EndCategory();
+        CreateCategory("Extra");
+
+        SpawnGraveZombies = new ButtonSetting("SpawnGraveZombies", SpawnGraveZombiesNow);
+
+        AddSettings(SpawnGraveZombies);
         EndCategory();
     }
 
@@ -41,7 +48,19 @@ public class LevelSetup : Module
         if (BoardInstanceIsNull) return;
 
         BoardInstance.SetGrave();
+    }
+    public void SpawnGraveZombiesNow()
+    {
+        if (!Active) return;
+        if (BoardInstanceIsNull) return;
 
+        foreach (var item in BoardInstance.griditemArray)
+        {
+            if (item is Grave grave)
+            {
+                grave.SetZombie();
+            }
+        }
     }
 
     public void SetFreezedPlantsNow()
