@@ -1,0 +1,12 @@
+{
+  "Name": "Level Setup",
+  "Description": "Allows you to manually trigger board's setup functions.",
+  "Search Hints": "levelsetup boardsetup setupfunctions triggerboardsetup setupmanager levelinit boardinit initializetrigger levelinitializer manualsetup setupcustomizer boardconfigurator levelsync setupoverride boardhandler initializegame levelconfig startuplevel setupdebug boardreset levelreset levelbuilder initboard boardloader customsetup runsetup",
+  "settings": {
+    "General": "General",
+    "Set Graves": "Set Graves",
+    "Set Freezed Plants": "Set Freezed Plants",
+    "Extra": "Extra",
+    "Spawn Grave Zombies": "Spawn Grave Zombies"
+  }
+}

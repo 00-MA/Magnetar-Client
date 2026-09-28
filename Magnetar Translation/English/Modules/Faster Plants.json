@@ -7,6 +7,9 @@
     "Entities": "Entities",
     "Attack Interval": "Attack Interval",
     "Animation Speed": "Animation Speed",
-    "Produce Speed": "Produce Speed"
+    "Produce Speed": "Produce Speed",
+    "Advanced": "Advanced",
+    "Modifications done here are preferred over Global modifications": "Modifications done here are preferred over Global modifications",
+    "Individual Plant": "Individual Plant"
   }
 }

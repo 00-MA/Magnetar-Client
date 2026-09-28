@@ -5,6 +5,9 @@
   "settings": {
     "General": "General",
     "Scale multiplier": "Scale multiplier",
-    "Entities": "Entities"
+    "Entities": "Entities",
+    "Advanced": "Advanced",
+    "Modifications done here are preferred over Global modifications": "Modifications done here are preferred over Global modifications",
+    "Individual Plant": "Individual Plant"
   }
 }

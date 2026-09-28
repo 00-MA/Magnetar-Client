@@ -1,0 +1,13 @@
+{
+  "Name": "Spawn Meteor",
+  "Description": "Spawns a meteor on the lawn",
+  "Search Hints": "spawnmeteor meteorfall meteorshower meteorstrike meteorspawn lawnmeteor meteordrop spacehazard impactmeteor meteorcheat meteorshowermod meteorimpact summonmeteor fallingstar meteorite meteorsmash skyhazard",
+  "settings": {
+    "General": "General",
+    "Preferences": "Preferences",
+    "Meteor Type": "Meteor Type",
+    "Keybind": "Keybind",
+    "Count of Meteors": "Count of Meteors",
+    "Delay between each meteor": "Delay between each meteor"
+  }
+}
