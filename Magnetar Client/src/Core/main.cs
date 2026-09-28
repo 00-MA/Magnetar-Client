@@ -167,6 +167,7 @@ public class main : BasePlugin
 
         if (Input.GetKeyDown(KeyCode.RightShift) && !HUDManager.forceShow)
         {
+            BlockSKeysPatch.BlockEscKey = true;
             Magnetar_Client.Config.showgui = !Magnetar_Client.Config.showgui;
             SaveLoad.Save();
             Api.Api.OnConfigSaved?.Invoke();
@@ -187,6 +188,8 @@ public class main : BasePlugin
         if (!hasWarmedUp) return;
 
         #region handle Escape Key
+        if (!Config.showgui) BlockSKeysPatch.BlockEscKey = false;
+
         if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Escape && ModuleManager.showModules)
         {
             Magnetar_Client.Config.showgui = false;
@@ -281,6 +284,7 @@ public class main : BasePlugin
     [HarmonyPatch(typeof(Input), "GetKeyDown", new[] { typeof(KeyCode) })]
     public static class BlockSKeysPatch
     {
+        public static bool BlockEscKey;
         public static bool Prefix(KeyCode key, ref bool __result)
         {
             if ((Magnetar_Client.Config.showgui || HUDManager.forceShow) && key != KeyCode.RightShift)
@@ -288,6 +292,13 @@ public class main : BasePlugin
                 __result = false;
                 return false;
             }
+
+            if (BlockEscKey && key == KeyCode.Escape)
+            {
+                __result = false;
+                return false;
+            }
+
             return true;
         }
     }
