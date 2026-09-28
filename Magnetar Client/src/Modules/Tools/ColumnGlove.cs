@@ -107,17 +107,9 @@ public class ColumnGlove : Module
                             newColumn,
                             plant.thePlantRow,
                             plant.thePlantType,
-                            null,
-                            Vector2.zero,
-                            false,
-                            false,
-                            null
+                            plant
                         );
 
-                        if (shifted != null)
-                        {
-                            plant.Die();
-                        }
                     }
                 }
 
