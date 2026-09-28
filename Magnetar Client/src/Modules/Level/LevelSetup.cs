@@ -36,7 +36,7 @@ public class LevelSetup : Module
         EndCategory();
         CreateCategory("Extra");
 
-        SpawnGraveZombies = new ButtonSetting("SpawnGraveZombies", SpawnGraveZombiesNow);
+        SpawnGraveZombies = new ButtonSetting("Spawn Grave Zombies", SpawnGraveZombiesNow);
 
         AddSettings(SpawnGraveZombies);
         EndCategory();
