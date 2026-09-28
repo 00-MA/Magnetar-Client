@@ -47,7 +47,7 @@ public static class Config
         }
     }
 
-    public static float RainbowSpeed = 0.08f;
+    public static float RainbowSpeed = 0.07f;
 
     public static bool ShowMainMenuCredits = true;
 
@@ -93,7 +93,7 @@ public static class Config
         }
     }
 
-    public static bool showgui = true;
+    public static bool showgui = false;
     public static bool dimBg = false;
     public static TabType CurrentTab = TabType.MODULES;
 
