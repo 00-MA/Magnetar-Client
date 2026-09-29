@@ -9,7 +9,6 @@ using Il2Cpp;
 using MelonLoader;
 #elif BEPINEX || RELEASE_BEPINEX
 using BepInEx.Unity.IL2CPP.Utils;
-using Magnetar_Client.UI.Setting;
 #endif
 
 namespace Magnetar_Client.Modules;

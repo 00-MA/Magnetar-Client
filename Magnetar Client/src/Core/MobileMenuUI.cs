@@ -1,8 +1,14 @@
-﻿using Il2CppSystem.IO;
-using Magnetar_Client.UI.Themes;
+﻿using Magnetar_Client.UI.Themes;
 using Magnetar_Client.Utils;
 using System;
 using UnityEngine;
+
+#if MELONLOADER || RELEASE_MELON
+
+#elif BEPINEX || RELEASE_BEPINEX
+using Il2CppInterop.Runtime;
+using Il2CppSystem.IO;
+#endif
 
 namespace Magnetar_Client.Core;
 

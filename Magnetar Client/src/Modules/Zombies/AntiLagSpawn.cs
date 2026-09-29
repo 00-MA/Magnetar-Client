@@ -1,11 +1,12 @@
 ﻿#if MELONLOADER || RELEASE_MELON
 using Il2Cpp;
-using Magnetar_Client.UI.Setting;
 #endif
 using UnityEngine;
 using System.Collections.Generic;
 using static Magnetar_Client.Game.AppData;
 using HarmonyLib;
+using Magnetar_Client.UI.Setting;
+
 namespace Magnetar_Client.Modules;
 
 #if !Android

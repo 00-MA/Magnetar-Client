@@ -1,12 +1,8 @@
 ﻿#if MELONLOADER || RELEASE_MELON
 using Il2Cpp;
-using Magnetar_Client.UI.Setting;
-using static Il2Cpp.Plant;
 #elif BEPINEX || RELEASE_BEPINEX
-using static global::Plant;
 #endif
-
-using System.Linq;
+using Magnetar_Client.UI.Setting;
 using UnityEngine;
 using static Magnetar_Client.Game.AppData;
 using static Magnetar_Client.Game.GameData;
@@ -89,7 +85,7 @@ public class KillPlants : Module
             Plant plant = PlantList[i];
             if (plant != null)
             {
-                plant.Die(DieReason.BySelf);
+                plant.Die(Plant.DieReason.BySelf);
             }
         }
     }

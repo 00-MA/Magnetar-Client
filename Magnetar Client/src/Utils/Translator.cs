@@ -10,7 +10,6 @@ using Magnetar_Client.UI.Setting;
 #if MELONLOADER || RELEASE_MELON
 
 #elif BEPINEX || RELEASE_BEPINEX
-using BepInEx;
 #endif
 
 namespace Magnetar_Client.Utils;

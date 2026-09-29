@@ -1,6 +1,5 @@
 ﻿using HarmonyLib;
 using Magnetar_Client.UI.Setting;
-using System.Linq;
 using static Magnetar_Client.Game.AppData;
 #if MELONLOADER || RELEASE_MELON
 using Il2Cpp;

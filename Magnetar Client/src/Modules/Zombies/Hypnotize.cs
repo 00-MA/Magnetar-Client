@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using Magnetar_Client.UI.Setting;
-using System.Linq;
 using static Magnetar_Client.Game.AppData;
 using static Magnetar_Client.Game.GameData;
 #if MELONLOADER || RELEASE_MELON

@@ -3,7 +3,6 @@ using HarmonyLib;
 using System;
 using static Magnetar_Client.Utils.Magnetar_Logger;
 using Magnetar_Client.Utils;
-using Magnetar_Client;
 
 #if MELONLOADER || RELEASE_MELON
 using MelonLoader;
@@ -189,7 +188,7 @@ public class main : BasePlugin
         if (!hasWarmedUp) return;
 
         #region handle Escape Key
-        if (!Config.showgui) BlockSKeysPatch.BlockEscKey = false;
+        if (!Magnetar_Client.Config.showgui) BlockSKeysPatch.BlockEscKey = false;
 
         if (Event.current.type == EventType.KeyDown && Event.current.keyCode == KeyCode.Escape && ModuleManager.showModules)
         {

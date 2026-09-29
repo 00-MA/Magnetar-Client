@@ -1,11 +1,17 @@
 ﻿using HarmonyLib;
-using Il2Cpp;
-using Il2CppTMPro;
 using Magnetar_Client.UI.Setting;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+#if MELONLOADER || RELEASE_MELON
+using Il2Cpp;
+using Il2CppTMPro;
+#elif BEPINEX || RELEASE_BEPINEX
+using TMPro;
+#endif
+
 namespace Magnetar_Client.Modules;
+
 
 public class CustomDifficulty : Module
 {

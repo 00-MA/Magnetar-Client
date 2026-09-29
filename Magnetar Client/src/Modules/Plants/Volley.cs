@@ -1,7 +1,6 @@
 ﻿using HarmonyLib;
 using Magnetar_Client.UI.Setting;
 using System;
-using System.Linq;
 #if MELONLOADER || RELEASE_MELON
 using Il2Cpp;
 #endif

@@ -1,8 +1,10 @@
-﻿#if MELONLOADER || RELEASE_MELON
+﻿using System.Runtime.InteropServices;
+#if MELONLOADER || RELEASE_MELON
 using MelonLoader;
 using MelonLoader.Logging;
 #elif BEPINEX || RELEASE_BEPINEX
 using BepInEx.Logging;
+using System;
 #endif
 
 namespace Magnetar_Client.Utils;

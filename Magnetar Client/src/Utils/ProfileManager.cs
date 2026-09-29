@@ -5,7 +5,6 @@ using System.Linq;
 using UnityEngine;
 using Magnetar_Client.Core;
 using static Magnetar_Client.Utils.Magnetar_Logger;
-using Magnetar_Client.UI.Setting;
 
 
 #if MELONLOADER || RELEASE_MELON

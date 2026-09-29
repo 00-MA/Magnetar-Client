@@ -2,7 +2,6 @@
 using Magnetar_Client.UI.Setting;
 using Magnetar_Client.Game;
 using System;
-using System.Linq;
 using System.Collections.Generic;
 using static Magnetar_Client.Game.AppData;
 #if MELONLOADER || RELEASE_MELON

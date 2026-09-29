@@ -1,5 +1,4 @@
 ﻿using static Magnetar_Client.Game.AppData;
-using System.Linq;
 
 using Magnetar_Client.UI.Setting;
 #if MELONLOADER || RELEASE_MELON

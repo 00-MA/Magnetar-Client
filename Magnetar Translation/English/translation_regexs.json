@@ -1,6 +1,5 @@
 {
   "----------Magnetar Client":"Magnetar Client -------------",
-  "(\\d+) selected": "{0} selected",
-  "Line (\\d+) Message (\\d+)": "Line {0} Message {1}",
-  "Seed Slot (\\d+)":"Seed Slot {0}"
+  "(\\d+) selected": "{1} selected",
+  "Seed Slot (\\d+)":"Seed Slot {1}"
 }

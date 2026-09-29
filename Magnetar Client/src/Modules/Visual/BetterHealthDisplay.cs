@@ -9,7 +9,6 @@ using Il2Cpp;
 using Il2CppTMPro;
 #elif BEPINEX || RELEASE_BEPINEX
 using TMPro;
-using Magnetar_Client.UI.Setting;
 #endif
 
 namespace Magnetar_Client.Modules;

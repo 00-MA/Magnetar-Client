@@ -6,7 +6,6 @@ using Il2Cpp;
 using Il2CppGameLevel.RogueShooting;
 #elif BEPINEX || RELEASE_BEPINEX
 using GameLevel.RogueShooting;
-using Magnetar_Client.UI.Setting;
 #endif
 
 namespace Magnetar_Client.Modules;

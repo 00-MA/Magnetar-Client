@@ -12,7 +12,6 @@ using Il2Cpp;
 using Il2CppRhythmGame;
 #elif BEPINEX || RELEASE_BEPINEX
 using RhythmGame;
-using Magnetar_Client.UI.Setting;
 #endif
 namespace Magnetar_Client.Modules;
 

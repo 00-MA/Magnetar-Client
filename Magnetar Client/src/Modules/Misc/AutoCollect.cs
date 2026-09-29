@@ -9,10 +9,7 @@ using MelonLoader;
 #elif BEPINEX || RELEASE_BEPINEX
 
 using BepInEx.Unity.IL2CPP.Utils;
-using Magnetar_Client.UI.Setting;
 using ZenGarden;
-
-using Magnetar_Client.UI.Setting;
 #endif
 using System;
 using System.Collections.Generic;
