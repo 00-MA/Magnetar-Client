@@ -201,11 +201,11 @@ public class DebugMode : Module
 
         if (selected.IsSelected((int)Options.CheatKeys))
         {
-            selected.Deselect( (int)Options.CheatKeys);
+            selected.Deselect((int)Options.CheatKeys);
 
             foreach (var key in CheatKeys)
             {
-                DebugModeLogger.Msg($"Found keypair: {key.ToString()}");
+                DebugModeLogger.Msg($"Found cheat code: {key.ToString()}");
             }
 
         }
