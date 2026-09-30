@@ -2,6 +2,7 @@
 using HarmonyLib;
 using System;
 using static Magnetar_Client.Utils.Magnetar_Logger;
+using Magnetar_Client;
 using Magnetar_Client.Utils;
 
 #if MELONLOADER || RELEASE_MELON

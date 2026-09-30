@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace Magnetar_Client.HUDElements;
 
+#if !ANDROID
 public class CurrentTime : HudElement
 {
     public CurrentTime() : base("Current Time", HudElement.NewRect(80))
@@ -24,3 +25,4 @@ public class CurrentTime : HudElement
         AdjustWidthToText(displayText, HUDElementStyle, 10f);
     }
 }
+#endif
