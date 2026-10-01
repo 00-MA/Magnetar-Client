@@ -85,11 +85,7 @@ public class SpawnMeteor : Module
                 int type = ((SelectSetting)instance.ChildSettings[0]).Value;
                 int count = ((IntSetting)instance.ChildSettings[2]).Value;
                 float delay = ((FloatSetting)instance.ChildSettings[3]).Value;
-#if MELONLOADER || RELEASE_MELON
-                MelonCoroutines.Start(MeteorSpawn(type, count, delay));
-#elif BEPINEX || RELEASE_BEPINEX
-                MonoBehaviourExtensions.StartCoroutine(BoardInstance, MeteorSpawn(type,count,delay));
-#endif
+                CoroutineManager.Start(MeteorSpawn(type, count, delay));
             }
         }
     }

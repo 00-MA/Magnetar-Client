@@ -109,11 +109,7 @@ public class WaveHack : Module
             if (instance == null || !instance.Active || instance.ZombiesCountMultiplier.Value == 1) return true;
             if (instance.ZombiesCountMultiplier.Value == 0) return false;
 
-#if MELONLOADER || RELEASE_MELON
-            MelonCoroutines.Start(SpawnZombies(__instance, wave));
-#elif BEPINEX || RELEASE_BEPINEX
-            MonoBehaviourExtensions.StartCoroutine(__instance.Cast<MonoBehaviour>(), SpawnZombies(__instance, wave));
-#endif
+            CoroutineManager.Start(SpawnZombies(__instance, wave));
             return false;
         }
 
