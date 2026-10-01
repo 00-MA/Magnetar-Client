@@ -2,13 +2,9 @@
 
 using Magnetar_Client.UI.Setting;
 #if MELONLOADER || RELEASE_MELON
-
 using Il2Cpp;
 using Il2CppZenGarden;
-using MelonLoader;
 #elif BEPINEX || RELEASE_BEPINEX
-
-using BepInEx.Unity.IL2CPP.Utils;
 using ZenGarden;
 #endif
 using System;
@@ -82,11 +78,7 @@ public class AutoCollect : Module
             {
                 if (obj != null)
                 {
-#if MELONLOADER || RELEASE_MELON
-                    MelonCoroutines.Start(AutoTrophyCollector.WaitAndCollectTrophy(obj));
-#elif BEPINEX || RELEASE_BEPINEX
-                    MonoBehaviourExtensions.StartCoroutine(obj, AutoTrophyCollector.WaitAndCollectTrophy(obj));
-#endif
+                    CoroutineManager.Start(AutoTrophyCollector.WaitAndCollectTrophy(obj));
                 }
             }
         }
@@ -117,11 +109,7 @@ public class AutoCollect : Module
 
             if (instance.selectedItems.IsSelected(1))
             {
-#if MELONLOADER || RELEASE_MELON
-                MelonCoroutines.Start(WaitAndCollectTrophy(__instance));
-#elif BEPINEX || RELEASE_BEPINEX
-                MonoBehaviourExtensions.StartCoroutine(__instance, WaitAndCollectTrophy(__instance));
-#endif
+                CoroutineManager.Start(WaitAndCollectTrophy(__instance));
             }
         }
 
