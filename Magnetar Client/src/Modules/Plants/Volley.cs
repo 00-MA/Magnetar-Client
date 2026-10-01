@@ -1,6 +1,8 @@
 ﻿using HarmonyLib;
 using Magnetar_Client.UI.Setting;
 using System;
+using System.Collections.Generic;
+using UnityEngine;
 #if MELONLOADER || RELEASE_MELON
 using Il2Cpp;
 #endif
@@ -74,7 +76,15 @@ public class Volley : Module
 
         [HarmonyPatch(nameof(CreateBullet.SetBullet))]
         [HarmonyPrefix]
-        public static bool SetBulletPrefix(CreateBullet __instance, float x, float y, int theRow, BulletType theBulletType, BulletMoveWay theMovingWay, bool fromEnermy = false)
+        public static bool SetBulletPrefix(
+            CreateBullet __instance,
+            ref Bullet __result,
+            float x,
+            float y,
+            int theRow,
+            BulletType theBulletType,
+            BulletMoveWay theMovingWay,
+            bool fromEnermy = false)
         {
             if (SpawnedByMod) return true;
             if (instance == null || !instance.Active) return true;
@@ -82,7 +92,7 @@ public class Volley : Module
             if (!instance.selectedBulletsSetting.IsSelected((int)theBulletType)) return true;
 
             int n = instance.BulletMultiplier.Value;
-            if (n == 1) return true;
+            if (n <= 1) return true;
 
             float verticalSpread = instance.VerticalSpread.Value;
 
@@ -90,13 +100,35 @@ public class Volley : Module
             try
             {
                 float centerOffset = (n - 1) / 2f;
+                int centerIndex = Mathf.FloorToInt(n / 2f);
+
+                Bullet primaryBullet = null;
+                List<Bullet> extraBullets = new();
 
                 for (int i = 0; i < n; i++)
                 {
                     float step = i - centerOffset;
                     float deltay = step * verticalSpread;
 
-                    __instance.SetBullet(x, y + deltay, theRow, theBulletType, theMovingWay, fromEnermy);
+                    Bullet bullet = __instance.SetBullet(x, y + deltay, theRow, theBulletType, theMovingWay, fromEnermy);
+                    if (bullet == null) continue;
+
+                    if (i == centerIndex)
+                    {
+                        primaryBullet = bullet;
+                    }
+                    else
+                    {
+                        extraBullets.Add(bullet);
+                    }
+                }
+
+                __result = primaryBullet;
+
+                // bugfix: Wait 1 frame to synchronize the damage to fix 0 damage bullets
+                if (primaryBullet != null && extraBullets.Count > 0)
+                {
+                    CoroutineManager.Start(SyncBulletDamageRoutine(primaryBullet, extraBullets));
                 }
             }
             finally
@@ -105,6 +137,24 @@ public class Volley : Module
             }
 
             return false;
+        }
+
+        private static System.Collections.IEnumerator SyncBulletDamageRoutine(Bullet source, List<Bullet> targets)
+        {
+            yield return new WaitForEndOfFrame();
+
+            if (source == null) yield break;
+
+            int damage = source.Damage;
+
+            for (int i = 0; i < targets.Count; i++)
+            {
+                Bullet target = targets[i];
+                if (target != null && target.gameObject != null)
+                {
+                    target.Damage = damage;
+                }
+            }
         }
     }
 
