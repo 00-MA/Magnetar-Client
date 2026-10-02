@@ -111,30 +111,13 @@ After installing the files, your game directory structure should look like this:
 
 ### 📱 Android (PVZRH Launcher)
 
-> **Note:** Ensure you have a file manager app installed (e.g., ZArchiver or Solid Explorer) to easily move files on your device.
-
 1. **Download & Install** the [latest PVZRH Android Launcher](https://github.com/ModPVZRH/PVZRH.Android.Launcher/releases). 
 2. **Open the launcher** once to generate its system folders, then close it.
 3. **Download** the [latest Android release](https://github.com/Tproplay/Magnetar-Client/releases) `.zip` file.
-4. **Extract** the downloaded archive to a convenient location.
-5. **Copy** `Newtonsoft.Json.dll` from this zip archive into the following directory on your device:
-   `/storage/emulated/0/PVZRH_Launcher/com.LanPiaoPiao.PlantsVsZombiesRH/BepInEx/core/`
 6. **Open** the PVZRH Launcher again.
 7. **Navigate** to the **Modpacks** tab (the 2nd icon at the bottom of the screen).
 8. **Tap** the **Curled Page icon** in the top-right corner.
-9. **Select** the `Magnetar Client.zip` file to import it.
-
-#### 📂 Android Folder Structure
-After moving the file, your core folder directory must look like this:
-
-```text
-PVZRH_Launcher/com.LanPiaoPiao.PlantsVsZombiesRH/BepInEx/
-├── core/
-│   ├── BepInEx.Core.dll
-│   ├── BepInEx.Preloader.dll
-│   └── Newtonsoft.Json.dll    <-- (Paste Newtonsoft.Json.dll here)
-└── plugins/
-```
+9. **Select** the `MagnetarClient-version-Android.zip` file to import it.
 
 ---
 
