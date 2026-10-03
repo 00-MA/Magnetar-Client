@@ -1,0 +1,13 @@
+{
+  "Name": "Invocar meteoro",
+  "Description": "Invoca un meteoro para hacer cenizas a los zombis",
+  "Search Hints": "spawnmeteor meteorfall meteorshower meteorstrike meteorspawn lawnmeteor meteordrop spacehazard impactmeteor meteorcheat meteorshowermod meteorimpact summonmeteor fallingstar meteorite meteorsmash skyhazard",
+  "settings": {
+    "General": "General",
+    "Preferences": "Preferencias",
+    "Meteor Type": "Tipo de meteoro",
+    "Keybind": "Asignación de teclas",
+    "Count of Meteors": "Conteo de meteoros",
+    "Delay between each meteor": "Espera entre cada meteoro"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "Name": "Modo dios",
+  "Description": "Hace que las plantas sean invencibles.",
+  "Search Hints": "godmode godmod invincibilty invinsible invincabel unkillable nodamage immortal immortel invincibillity goddmode godmdoe invuln invulnerable invunrable invun invinc plantgod plantinvincibility invensible invonceable invinci godmodecheat no-die infinitelife god-mode invinciblity godmodde",
+  "settings": {
+    "General": "General",
+    "Entities": "Entidades",
+    "Immune To Damage": "Inmune a Daño",
+    "Immune To Vehicle": "Inmune a Vehiculos",
+    "Immune To Shovel": "Inmune a Pala"
+  }
+}

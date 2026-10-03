@@ -1,0 +1,6 @@
+{
+  "Name": "Guante de columna",
+  "Description": "Mueve una planta y toda la columna se moverá con ella. como en Formen Arr! pero eh... creo que no es necesario explicártelo.",
+  "Search Hints": "columnglove glovecol columnmove movecolumn identicalplants moveplants columnglovemod simultaneousmove massmove multi-move gloveswap plantglove plantcolumn glovemove multijmove plantmover glovecolumn moveall rowmove quickmove glovecopy columncopy columnsync gloveplant columnshift movemulti plantshift glovesync syncmove identicalmove",
+  "settings": {}
+}

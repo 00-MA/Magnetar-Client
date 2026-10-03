@@ -1,0 +1,10 @@
+{
+  "Name": "Zombis Diminutos",
+  "Description": "Cambia el tamaño de los zombis.\nNota: tambien cambia su velocidad.",
+  "Search Hints": "",
+  "settings": {
+    "General": "General",
+    "Scale multiplier": "Multiplicador de escala",
+    "Entities": "Entidades"
+  }
+}

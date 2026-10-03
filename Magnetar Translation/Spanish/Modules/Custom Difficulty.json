@@ -1,0 +1,24 @@
+{
+  "Name": "Dificultad personalizada",
+  "Description": "Permite modificar la dificultad.",
+  "Search Hints": "customdifficulty difficultymodifier difficultysettings scaledifficulty difficultyeditor game difficultyconfig difficultychanger hardmod easymod difficultybalancer customdifficultycustomizer diffeditor difficultyoverride adjustmentmod challengedifficulty difficultyselector diffmanager customchallenge",
+  "settings": {
+    "General": "General",
+    "Allow changing difficulty in skin levels": "Permitir cambiar dificultad en niveles de pieles",
+    "Max Game Difficulty": "Maxima dificultad",
+    "Advanced": "Avanzado",
+    "This section allows you to register your own custom difficulty.\nDifficulty 6 is already coded, you may over write the values\nthrough Custom Difficulty Config.\nOn Difficulty 5:\n   Zombie Insta-kill Threshold % = 40\n   Odyssey Health multiplier = 1.5\nOn Difficulty 6:\n   First Wave Arrival Time = 10\n   Zombie Speed Multiplier = 1.4\n   Wave Interval = 3": "Esta sección te permite registrar tu propia dificultad personalizada.\nLa dificultad 6 ya está codificada; puedes sobrescribir los valores\na través de la configuración de dificultad personalizada.\nEn dificultad 5:\n Umbral de muerte instantánea de zombis % = 40\n Multiplicador de salud de Odyssey = 1.5\nEn dificultad 6:\n Tiempo de llegada de la primera oleada = 10\n Multiplicador de velocidad de zombis = 1.4\n Intervalo de oleadas = 3",
+    "Custom Difficulty Config": "Configuración de dificultad personalizable",
+    "Difficulty level": "Nivel de dificultad",
+    "Difficulty Name": "Nombre de dificultad",
+    "Zombie Speed Multiplier": "Multiplicador de velocidad zombi",
+    "Damage Reduction %": "Reducción de daño %",
+    "Zombie Spawn Multiplier": "Multiplicador de zombis",
+    "Zombie Insta-kill Threshold %": "Posibilidad de zombi instakill %",
+    "Insta-kill ignore armor": "Instakill ignora armadura",
+    "First Wave Arrival Time": "Tiempo de primera orda",
+    "Wave Interval": "Intervalo de orda",
+    "Odyssey Health multiplier": "Multiplicador de vida odisea",
+    "Convyer Interval": "Intervalo de cinta transportadora"
+  }
+}

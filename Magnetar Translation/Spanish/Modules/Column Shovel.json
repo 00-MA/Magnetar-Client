@@ -1,0 +1,10 @@
+{
+  "Name": "Pala de columna",
+  "Description": "Como en Formen Arr!, pero al revez.",
+  "Search Hints": "columnshovel shovelcolumn columnremove massshovel shovelall removecolumn identicalshovel multi-shovel shovelidentical columnclear clearsameplants removeallshovel columncleanup shovelplants shovelmod columnshovelmod clearcolumn multi-remove shovelrow rowshovel clearsamecolumn plantshovel column-shovel shovelidenticalplants massremove shovelgroup shovelmulti shovelsync colshovel",
+  "settings": {
+    "General": "General",
+    "Mode": "Modo",
+    "Only Similar Plants": "solo plantas similares"
+  }
+}

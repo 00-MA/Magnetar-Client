@@ -1,0 +1,10 @@
+{
+  "Name": "Modificador de Reroll Ilimitadas",
+  "Description": "Permite Reroll (repeticiones) limitadas",
+  "Search Hints": "unlimitedmodifierreroll modifierreroll infinite reroll buffs rerollbuffs buffreroll rerollmods modreroll modreroller unlimitedreroll infinitereoll rerollunlimited randombuff rerollability rerolloptions buffmod rerollcheat betterbuffs buffrandomizer freeroll endlessreroll modchange rerollpower rerollstats rerollfix modifierchange rerollanybuff infinitestats modrerollcheat",
+  "settings": {
+    "General": "General",
+    "Reroll Count": "Conteo de Reroll",
+    "Preserve Original Count": "Preservar el conteo original"
+  }
+}

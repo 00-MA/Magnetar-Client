@@ -1,0 +1,12 @@
+{
+  "Name": "Hack de monedas",
+  "Description": "¿Será suficiente para un taco?.",
+  "Search Hints": "unlimited money infinite money mny mney ifnite finiteulimited limitless unrestricted endless moneymultiplier cashmultiplier moneyboost moneybonus moneyincrease moneymultiplyer monymultiplier moenymultiplier moneymultipier moneymultaplier moneymulltiplier moneymultipyler wealthmultiplier richesmultiplier coinmultiplier dollarmultiplier currencymultiplier moneyfactor moneyx2 cashboost",
+  "settings": {
+    "Unlimited Money": "Monedas ilimitadas",
+    "Money Amount": "Cantidad de monedas",
+    "Preserve Original": "Preservar Original",
+    "Money Multiplier": "Multiplicador de monedas",
+    "Multiplier": "Multiplicador"
+  }
+}

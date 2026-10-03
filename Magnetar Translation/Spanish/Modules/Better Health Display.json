@@ -1,0 +1,18 @@
+{
+  "Name": "Mejor visualización de salud",
+  "Description": "Resume las largas exposiciones de vida a uno más corto.",
+  "Search Hints": "healthdisplay healthtext healthshow hpdisplay hptext betterhealth clearhealth shorthealth healthform shorthp clearhp healthconverter texthp hpconverter shorttext healthui hpui hpvisual healthvisual betterhp displayhealth healthshortener hp-display health-display texthp health-txt hptxt healthtxt",
+  "settings": {
+    "General": "General",
+    "Combine HP and Shield": "Combinar HP y escudo",
+    "Plants": "Plantas",
+    "Whitelist Plants": "Plantas en lista blanca",
+    "Show Max Health": "mostrar vida max.",
+    "Zombies": "Zombis",
+    "Whitelist Zombies": "Zombis en lista blanca",
+    "Extra": "Extra",
+    "Auto Enable Plant Hp": "encender automaticamente HP de planta",
+    "Auto Enable Zombie Hp": "encender automaticamente HP de zombi",
+    "Show Star icon on Controlled Plant": "Mostrar Estrella en planta controlada"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "Name": "Anti-Lag por Aparición",
+  "Description": "Escalona la aparición masiva de zombis a lo largo del tiempo para evitar picos de latencia..",
+  "Search Hints": "antilag antilagspawns lagspawn fixlag lagfix countersmasher stagger spawns staggerzombies staggeredspawns massspawn lagspike nolag spawnerlag zombielag lagprevent performanceboost spawnfix breakcounter counterbreak zombiecounter smoothspawn logicbreak massspawnfix antilagmod lagspawns antispawnlag laglessspawns",
+  "settings": {
+    "General": "General",
+    "Frames Between Spawns": "Fotogramas entre apariciones",
+    "Unaffected Entities": "entidades sin afectar"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "Name": "Hack de orda",
+  "Description": "Permite modificar la funciión de aparición de orda.",
+  "Search Hints": "wavehack wavemod wavespawn wavemodify wavespawnlogic spawnlogic waveeditor wavemanager customwaves waveconfig wavespawnrate wavecontrol wavespawnsettings modifyspawn wavespawncontrol wavecheat wavespawner wavechanger wavesize wavemanager wavebypass waveflow dontsendzombies pause zombiespause wavepause pausewave removewave",
+  "settings": {
+    "Cooldown": "Cooldown",
+    "Custom Wave Cooldown": "Cooldown de orda personalizable",
+    "Wave Cooldown": "Cooldown de orda",
+    "Freeze Wave Timer": "Parar el temporizador de orda",
+    "Spawn Rate": "Tasa de aparición",
+    "Zombies count multiplier": "Multiplicador de conteo de zombis",
+    "Spawn Delay": "demora de aparición",
+    "Extra": "Extra",
+    "Total Clearance Mode": "Modo de despejado"
+  }
+}

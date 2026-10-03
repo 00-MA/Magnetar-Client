@@ -1,0 +1,9 @@
+{
+  "Name": "Silenciador de sonidos",
+  "Description": "bloquea ciertos sonidos.",
+  "Search Hints": "soundmuffler audiofilter soundmuffle muteaudio soundblocker audiosettings volumecontrol soundmute noisecontrol disablesounds soundcleaner audioblock soundfix muteeffects audiomute soundmanager customaudio soundfilter audiodampener soundkiller",
+  "settings": {
+    "General": "General",
+    "Blacklisted": "Lista negra"
+  }
+}

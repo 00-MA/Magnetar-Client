@@ -1,0 +1,17 @@
+{
+  "Name": "Escala de tiempo",
+  "Description": "Cambia la escala de tiempo.",
+  "Search Hints": "timescale slowmo slowmotion slow-mo speedmultiplier gamespeed timespeed slowmoion slowmoshun slowmow slomo slomotion slomow timesclae timescael timescal timesclae speedfactor timescaleup timescaleslow timescalebot speedcontrol fastforward speedchange bullettime speedup speeddown velocitycontrol timingmultiplier timefactor",
+  "settings": {
+    "General": "General",
+    "Time Scale (Engine)": "Tiempo en escala (Motor)",
+    "Buttons": "Botones",
+    "Preferences": "Preferencias",
+    "Speed setting": "Configuración de velocidad",
+    "Control button": "Botón de control",
+    "Extra": "Extra",
+    "Reset on double click": "Reiniciar en doble click",
+    "Disable on game paused": "Apagar cuando se pausa",
+    "Re-enable after pause": "Volver a encender cuando se pausa"
+  }
+}

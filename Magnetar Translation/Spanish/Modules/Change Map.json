@@ -1,0 +1,10 @@
+{
+  "Name": "Cambiar mapa",
+  "Description": "Te permite cambiar el fondo del nivel.\nEsto solo cambia el mapa de fondo y no cambiará los carriles..",
+  "Search Hints": "changemap mapchanger levelbackground backgroundchanger mapselector levelmap backgroundswitcher mapswap custommap backgroundmod mapmod stagechanger leveltheme backgroundpicker mapoverride stagetheme levelchanger mapeditor environmentchanger backgroundmanager",
+  "settings": {
+    "General": "General",
+    "Map": "Mapa",
+    "Change Map Now": "Cambiar mapa ahora"
+  }
+}

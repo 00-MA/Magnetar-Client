@@ -1,0 +1,12 @@
+{
+  "Name": "Hack de caja de regalo",
+  "Description": "modifica lo que viene en las cajas de regalo.",
+  "Search Hints": "giftboxhack giftboxmod giftboxeditor giftboxcustomizer plantgiftbox giftboxgift giftboxsettings giftboxinject giftboxoverride giftboxswap giftboxmanager giftboxpool giftboxrandomizer giftboxchange giftboxfix giftboxcheat giftboxselect giftboxspawn giftboxedit giftboxmodify",
+  "settings": {
+    "Giftbox": "Caja de regalo",
+    "Modify Normal Giftbox": "Modificar caja de regalo común",
+    "Allowed Plants": "Plantas permitidas",
+    "Snow Giftbox": "caja de regalo de nieve",
+    "Modify Snow Giftbox": "Modificar caja de regalo de nieve"
+  }
+}

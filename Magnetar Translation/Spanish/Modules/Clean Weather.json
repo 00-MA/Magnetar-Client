@@ -1,0 +1,10 @@
+{
+  "Name": "Limpiar ambiente",
+  "Description": "Limpia la Niebla y la Nieve.",
+  "Search Hints": "cleanweather clearweather nofog nosnow weatherclear weatherfix removefog removesnow clearfog clearsnow weathercontrol weatherclean skyclear fogremover snowremover no-weather weather-clear clear-weather visibilityfix clearweather-mod weather-mod weatherhack",
+  "settings": {
+    "General": "General",
+    "Clear Fog": "Limpiar niebla",
+    "Clear SnowFall": "Limpiar nieve"
+  }
+}

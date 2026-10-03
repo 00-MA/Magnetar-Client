@@ -1,0 +1,13 @@
+{
+  "Name": "Amontonar zombis",
+  "Description": "Mantiene una velocidad de fotogramas estable al fusionar los puntos de vida de los zombis idénticos cercanos cuando se supera el límite de aparición.\nPuede romper el contador de daño.",
+  "Search Hints": "clampzombies clampzombie limitfps maxfps fpsoptimize fixlag mergezombies combinezombies zombiehp healthmerge mergespawn performanceboost memoryfix stackzombies zombieclamp hpstack zombielimit fpsboost lagfix clusterspawns clumpzombies mergehp optimizefps lowfps hpfusion zombiemerge lagprevent clampzomb",
+  "settings": {
+    "General": "General",
+    "Max Zombies": "Zombis maximos",
+    "Apply Speed Reduction": "Aplicar recucción de velocidad",
+    "Add % of Hp": "Añadir % de Hp",
+    "Extra": "Extra",
+    "Visual Scale": "Escala visual"
+  }
+}

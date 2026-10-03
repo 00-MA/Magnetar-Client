@@ -1,0 +1,15 @@
+{
+  "Name": "Selección rápida",
+  "Description": "Salva y accede a selecciones personalizadas.",
+  "Search Hints": "quicksetup loadout setupmanager savebuild loadbuild setup presetmanager quickload quicksave plantsetup configuration buildmanager setuploader loadouts quick-setup customsetup setupsaver presetload",
+  "settings": {
+    "Save": "Salvar",
+    "Name": "Nombre",
+    "Save Current Setup": "Salvar selección actual",
+    "Load": "Cargar",
+    "Clear Lawn Before Load": "Limpiar el cesped antes de cargar",
+    "Setup": "Selección",
+    "Load Selected Setup": "Cargar selección seleccionada",
+    "Delete Selected Setup": "Eliminar selección seleccionada"
+  }
+}

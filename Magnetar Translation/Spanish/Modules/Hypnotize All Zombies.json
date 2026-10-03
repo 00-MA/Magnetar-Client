@@ -1,0 +1,10 @@
+{
+  "Name": "Hipnotizar todo zombi",
+  "Description": "Hipnotiza los zombis seleccionados cuando el modulo esté encendido.",
+  "Search Hints": "hypnotizeallzombies hypnozombies zombieshypnotize hypnotisezombies charmzombies zombiecharm mindcontrolzombies zombiesmindcontrol allyzombies zombiealliance brainwashzombies turnzombies hypnotizezombie hypnozombie hipnotizezombies hipnozombies hypnatizezombies hypnotiseallzombies hypnotisedzombies hypnoallzombies zombiehypnotizer zombiehypnosis zombiespell zombieconvert convertzombies friendlyzombies zombiebrainwash zombiemind hypnotiseallzombie",
+  "settings": {
+    "General": "General",
+    "Entities": "Entidades",
+    "Auto Turn Off": "Apagar automaticamente"
+  }
+}

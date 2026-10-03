@@ -1,0 +1,12 @@
+{
+  "Name": "Carretilla sin CD",
+  "Description": "La carretilla no tendrá más tiempo de demora.",
+  "Search Hints": "nowheelbarrowcd wheelbarrowcooldown wheelbarrowcd wheelbarrowinstant instantwheelbarrow cooldownhack cooldownremove wheelbarrow-cooldown wheelbarrowfix cd-remove wheelbarrowspeed wheelbarrowcooldownfix wheelbarrowinstantcooldown wheelbarrownocd nocd wheelbarrowmod wheelbarrowutility",
+  "settings": {
+    "General": "General",
+    "Custom Wheel Barrow Cooldown": "Demora de Carretilla personalizable",
+    "Extra": "Extra",
+    "Preserve Original": "Preservar Original",
+    "Reset CD on Enable": "Reiniciar CD al encender"
+  }
+}

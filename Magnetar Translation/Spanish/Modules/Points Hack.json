@@ -1,0 +1,12 @@
+{
+  "Name": "Hack de puntos",
+  "Description": "Comprarás cada modificador.",
+  "Search Hints": "unlimited points infinite points pts currency gold ifnite finiteulimited limitless unrestricted endless pointsmultiplier pointmultiplier ptsmultiplier scoremultiplier scoreboost pointsboost pointmultiplyer pointsmultiplyer pointmultipier pointsmultipier pointsmultyplier pointmultyplier scoreincrease pointsbonus pointbonus pointx2 ptsbonus pointsfactor scorefactor",
+  "settings": {
+    "Unlimited Points": "Puntos ilimitados",
+    "Points Amount": "Cantidad de puntos",
+    "Preserve Original": "Preservar original",
+    "Points Multiplier": "Multiplicador de puntos",
+    "Multiplier": "Multiplicador"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "Name": "FPS sin límite",
+  "Description": "Personaliza la cantidad de Fotogramas por segundo.",
+  "Search Hints": "fpslimit fpscap limitfps framespersecond fpsbreaker unlockfps capfps customfps maxfps fpsfix fpsunlocked framecap framepersecond fpslimiter fpxlimit fpaslimit fps-limit fpsbypass bypassfps nofpslimit unlimitedfps fpsset setfps fps-cap morefps fpsboost lagfix frameslimit",
+  "settings": {
+    "General": "General",
+    "Max FPS": "Max FPS"
+  }
+}

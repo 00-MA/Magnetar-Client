@@ -1,0 +1,12 @@
+{
+  "Name": "Guantes sin CD",
+  "Description": "Moverás sin pavor.",
+  "Search Hints": "noglovecd glovecooldown customglovecd glovecd zeroglovecd noglovecoolndown glovecooldownreset fastglove instantglove glovebuff glovecdmod glovecdchanger glovecdremover glovecolldown glovecooldon glovecooldwn glovcd glovecooldoun glovecdtimer glovecdreducion glovecooldownreduction glovefast gloveready gloveunlimited gloveinfinite gloveinterval gloveperiod glovespeed glovespam glovefrequency",
+  "settings": {
+    "General": "General",
+    "Custom Glove Cooldown": "CD de guante personalizable",
+    "Extra": "Extra",
+    "Preserve Original": "Preservar original",
+    "Reset CD on Enable": "Reiniciar CD al encender"
+  }
+}

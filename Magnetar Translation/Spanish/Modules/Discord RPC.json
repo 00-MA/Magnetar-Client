@@ -1,0 +1,13 @@
+{
+  "Name": "Discord RPC",
+  "Description": "Muestra el estatus de juego en discord.",
+  "Search Hints": "discordrpc discordrichpresence discordpresence discordactivity discordstatus discordintegration rpcstatus richpresence discordconnect discordlink discordinfo discorddisplay rpcpresence discordrp discordstat discordlive discordsync discordgame discordapi discrodrpc discordrcp discordrps discordrich discordpresance discordpresense discordconection discordintigration rpcbot rpcclient rpcactive",
+  "settings": {
+    "General": "General",
+    "Switch Speed (s)": "Switch Speed (s)",
+    "In Game": "In Game",
+    "Line 1": "Line 1",
+    "Line 2": "Line 2",
+    "Iteration Mode": "Iteration Mode"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "Name": "Setup de Nivel",
+  "Description": "Permite activar manualmente las funciones de configuración de la placa..",
+  "Search Hints": "levelsetup boardsetup setupfunctions triggerboardsetup setupmanager levelinit boardinit initializetrigger levelinitializer manualsetup setupcustomizer boardconfigurator levelsync setupoverride boardhandler initializegame levelconfig startuplevel setupdebug boardreset levelreset levelbuilder initboard boardloader customsetup runsetup",
+  "settings": {
+    "General": "General",
+    "Set Graves": "Colocar tumbas",
+    "Set Freezed Plants": "Colocar Plantas congeladas",
+    "Extra": "Extra",
+    "Spawn Grave Zombies": "Invocar los zombis de tumba"
+  }
+}

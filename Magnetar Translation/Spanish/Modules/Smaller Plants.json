@@ -1,0 +1,13 @@
+{
+  "Name": "Plantas diminutas",
+  "Description": "Cambia el tamaño visual de las plantas.",
+  "Search Hints": "smallerplants miniplants tinyplants plantscale plantresize plantscaler minatureplants scaleplants compactplants microplants plantsize plantshrinker shrinkplants resizeplants miniplantmod plantzoom scaledplants tinyplantmod microplantmod sizechanger",
+  "settings": {
+    "General": "General",
+    "Scale multiplier": "Multiplicador de escala",
+    "Entities": "Entidades",
+    "Advanced": "Avanzado",
+    "Modifications done here are preferred over Global modifications": "Las modificaciones realizadas aquí son preferibles a las modificaciones globales.",
+    "Individual Plant": "Planta individual"
+  }
+}

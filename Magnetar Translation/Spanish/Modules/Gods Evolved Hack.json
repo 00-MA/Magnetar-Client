@@ -1,0 +1,20 @@
+{
+  "Name": "Hack de Los Dioses Evolucionados",
+  "Description": "Utilidades para facilitar L.D.E .",
+  "Search Hints": "godsevolvedutil godsevolved helper utility cheats mod godsevolvedhackgodsevolvedmod trainer easetools assistant godsevolvedcheats godsevolvedtrainer utilitymod mods helpertools gameutils godsevolvedhelper godsevolvedutilities qualityoflife qol devutils godsevolvedassist",
+  "settings": {
+    "General": "General",
+    "Shield value": "Valor de escudo",
+    "Revive CD": "CD de resucitación",
+    "Quality Weight": "Calidad",
+    "The weight values are synced to level": "Valor de utilidades sincronizadas con el nivel",
+    "Lock Weight Values": "Bloquear valor de utilidades",
+    "Default Quality Weight": "valor de utilidades por default",
+    "Silver Quality Weight": "valor de utilidades plateado",
+    "Gold Quality Weight": "valor de utilidades dorado",
+    "Diamond Quality Weight": "valor de utilidades diamante",
+    "Curse Quality Weight": "valor de utilidades malditos",
+    "Iridescent Quality Weight": "valor de utilidades irisados",
+    "Random Quality Weight": "valor de utilidades azar"
+  }
+}

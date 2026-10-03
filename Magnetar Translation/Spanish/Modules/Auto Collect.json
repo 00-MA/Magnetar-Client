@@ -1,0 +1,9 @@
+{
+  "Name": "Recolectar automaticamente",
+  "Description": "Recolecta los items seleccionados automaticamente.",
+  "Search Hints": "collectgiftbox giftboxcollector gitbox giftboxcollect getgiftbox giftboxpicker autocollectgiftbox giftboxes giftboxs giftboxget gitboxcollect giftboxget giftboxer giftbox-collect giftbix giftvox giftboxe giftbx collectgift giftboxauto gift-box giftcollect boxcollect giftboxhunter giftboxgrabber giftboxgrab giftgraber giftgrab giftbux",
+  "settings": {
+    "General": "General",
+    "Items": "Items"
+  }
+}

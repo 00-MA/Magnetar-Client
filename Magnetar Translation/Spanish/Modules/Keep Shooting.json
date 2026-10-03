@@ -1,0 +1,9 @@
+{
+  "Name": "Sempre disparar",
+  "Description": "Hace que las plantas disparen continuamente, incluso sin un objetivo aparente.",
+  "Search Hints": "keepshooting continuousfire autofire rapidfire nonstopshooting endlessfire alwaysshooting holdfire automaticshooting shootingloop firingloop fireloop keepfire shootingbot autoshot keepshotting keepshoting continousfire continuousshoot nonstopfire rapidshooting firespam shootspam infinitieshooting infiniteshoot burstfire firingrate firespeed shootalways perpetualfire constantfire",
+  "settings": {
+    "General": "General",
+    "Entities": "Entidades"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "Name": "Cartas sin CD",
+  "Description": "Es hora De-De-De-De-Del DUELO! las cartas no tienen más demora mientras el modulo esté encendido.",
+  "Search Hints": "nocardscd cardscooldown customcardscd cardscd zerocardscd nocardcoolndown cardcooldownreset fastcards instantcards cardbuff cardcdmod cardcdchanger cardcdremover cardcolldown cardcooldon cardcooldwn cardcd cardcooldoun cardcdtimer cardcdreducion cardcooldownreduction cardfast cardready cardunlimited cardinfinite cardinterval cardperiod cardspeed cardspam cardfrequency",
+  "settings": {
+    "General": "General",
+    "Cards": "Cartas",
+    "Duplicate Cards": "Duplicar cartas",
+    "Custom CD Multiplier": "personalizar CD de cartas "
+  }
+}

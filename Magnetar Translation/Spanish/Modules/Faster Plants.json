@@ -1,0 +1,15 @@
+{
+  "Name": "Plantas más rapidas",
+  "Description": "Hace que las plantas seleccionados sean más rapidos cuando el módulo está seleccionado..",
+  "Search Hints": "fasterplants speedplants plantattack speedup plantspeed fastplant plantspeedup plantcooldown plantrate quickplants plantfast plantaccelerator plantboost attackspeed fire-rate plantspeeder fasterplantsmod plantvelocity fasterplantsup fasterplantspeed faster-plants plantrapid plantswift plantspeedy plantturbo plantoverdrive plantbuff plantagility plantquickness plantalacrity fastattack",
+  "settings": {
+    "General": "General",
+    "Entities": "Entidades",
+    "Attack Interval": "Intervalo de ataque",
+    "Animation Speed": "Velocidad de animación",
+    "Produce Speed": "Velocidad de produccion",
+    "Advanced": "Avanzado",
+    "Modifications done here are preferred over Global modifications": "Las modificaciones realizadas aquí son preferibles a las modificaciones globales.",
+    "Individual Plant": "Planta individual"
+  }
+}

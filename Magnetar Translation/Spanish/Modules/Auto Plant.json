@@ -1,0 +1,13 @@
+{
+  "Name": "Plantar automaticamente",
+  "Description": "Te permite colocar versiones fantasma de las plantas, que con el tiempo serán reemplazadas por las plantas reales.\nUsa el botón derecho para eliminar las plantas fantasma.",
+  "Search Hints": "autoplant ghostplant ghostplanting auto-plant plantghost ghostspawn ghostautoplant ghostbuild ghostplacer ghostplacement ghost-plant autoplanter ghostplantmod ghost-planting autofill ghostseeds ghostgrowth ghost-build ghostingplant autoplantmod ghostauto ghosting ghostseeds ghosttimer ghost-spawn ghostplacer ghostplacing ghostplantingtool",
+  "settings": {
+    "General": "General",
+    "Render Ghost Plant": "Renderizar planta fantasma",
+    "Ghost Opacity": "Opacidad de fantasma",
+    "Multi Plant": "Multi-Planta",
+    "Use Extra Plant": "Usar Planta Extra",
+    "Planting Order": "Order de plantación"
+  }
+}

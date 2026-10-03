@@ -1,0 +1,10 @@
+{
+  "Name": "Zombis más rapidos",
+  "Description": "Hace que los zombis seleccionados sean más rapidos cuando el módulo está seleccionado.",
+  "Search Hints": "fasterzombies speedzombies zombieboost zombiespeed fastzombies zombiespeedup quickzombies zombievelocity zombierun runzombies fastzombie zombiespeedmod zombiespeeder speedupzombies rapidzombies swiftzombies turbozombies zombieagility zombiequickness zombiealacrity zombiefast zombiesprint zombiesprinting zombieoverdrive zombiemovement fasterzombie speedyzombies fastmovezombies zombiehurry zombierapid",
+  "settings": {
+    "General": "General",
+    "Entities": "Entidades",
+    "Speed": "Velocidad"
+  }
+}

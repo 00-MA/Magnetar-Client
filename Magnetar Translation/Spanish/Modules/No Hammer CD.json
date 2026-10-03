@@ -1,0 +1,12 @@
+{
+  "Name": "Martillo sin CD",
+  "Description": "Amartillarás a tus enemigos, ilimitadamente.",
+  "Search Hints": "nohammercd hammercooldown customhammercd hammercd zerohammercd nohammercoolndown hammercooldownreset fasthammer instanthammer hammerbuff hammercdmod hammercdchanger hammercdremover hammercolldown hammercooldon hammercooldwn hamrcd hammercooldoun hammercdtimer hammercdreducion hammercooldownreduction hammerfast hammerready hammerunlimited hammerinfinite hammerinterval hammerperiod hammerspeed hammerspam hammerfrequency",
+  "settings": {
+    "General": "General",
+    "Custom Hammer Cooldown": "Personalizar CD de martillo",
+    "Extra": "Extra",
+    "Preserve Original": "Preservar Original",
+    "Reset CD on Enable": "Reiniciar CD al encender"
+  }
+}

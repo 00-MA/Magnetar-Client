@@ -1,0 +1,12 @@
+{
+  "Name": "Matar todo zombi",
+  "Description": "Mata a todo zombi cuando el modulo está activado. ¿que ya no estaban muertos?.",
+  "Search Hints": "killallzombies killzombies zombiekiller removezombies deletezombies zombieremoval zombieslayer destroyzombies exterminatezombies zombieexterminator zombieclear clearzombies wipezombies zombiewipe zombiedeath deathzombies killallzombie killalzoombies kilallzombies killallzombiees killallzombis zombiedestructor zombiedestroyer zombiedeleter zombiesmasher zombiepurger zombieexecutioner zombieelimination zombieterminator zombieender zombieeraser zombievanisher",
+  "settings": {
+    "General": "General",
+    "Entities": "Entidades",
+    "Hypnotized Entities": "Entidades hipnotizadas",
+    "Extra": "Extra",
+    "Auto Turn Off": "Apagar automaticamente"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "Name": "No Items de cuadrícula",
+  "Description": "Remueve los elementos de cuadricula cuando está activado.",
+  "Search Hints": "nogriditem removegriditem griditemremover cleargriditems deletegriditems nogriditems nogriditemmod nogriditemfix nograve noladder noiceblock noscarypot nograves noladders noiceblocks noscarypots anti-grave anti-ladder anti-iceblock anti-pot removegraves removeladders removeiceblocks removescarypots graveclearer ladderclearer iceblockclearer potclearer nogriditemm nogrditem nogrititem nogriditme nogriditemz removegridobjects deletegridobjects",
+  "settings": {
+    "General": "General",
+    "Grid Items": "Items de cuadricula",
+    "Extra": "Extra",
+    "Auto Turn Off": "Apagar automaticamente"
+  }
+}

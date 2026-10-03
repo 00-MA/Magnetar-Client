@@ -1,0 +1,11 @@
+{
+  "Name": "Matar toda planta",
+  "Description": "Mata a toda planta cuando el modulo esta activado.",
+  "Search Hints": "killallplants killplants plantkiller removeplants deleteplants plantremoval plantslayer destroyplants exterminateplants plantexterminator plantclear clearplants wipeplants plantwipe plantdeath deathplants killallplant killalplants kilallplants killallplantes killallplantts plantdestructor plantdestroyer plantdeleter plantsmasher plantpurger plantexecutioner plantelimination plantterminator plantender planteraser plantvanisher",
+  "settings": {
+    "General": "General",
+    "Entities": "Entidades",
+    "Extra": "Extra",
+    "Auto Turn Off": "Apagar automaticamente"
+  }
+}

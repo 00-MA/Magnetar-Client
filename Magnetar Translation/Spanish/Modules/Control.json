@@ -1,0 +1,10 @@
+{
+  "Name": "Planta Control",
+  "Description": "Te permite controlar cualquier planta usando las teclas WASD.\nPulsa la tecla Control para controlar la planta en la posición del ratón.\nVuelve a pulsar la tecla Control para eliminar la planta del control..",
+  "Search Hints": "control wasdplant wasdcontrol moveplant plantcontrol plantmovement wasd controller plantwasd controlmod plantmover moveplants plantsteer wasdmove driveplant pilotplant steerplant wasdmovement plantdrive plantpilot manualcontrol plantcontrolmod movementmod movementhack wasdmode plantcontrolmode move",
+  "settings": {
+    "General": "General",
+    "Control Key": "Boton Control",
+    "Single Plant mode": "Modo de planta singular"
+  }
+}
