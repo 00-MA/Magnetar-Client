@@ -61,5 +61,10 @@
   "Theme": "Theme",
   "Show Main Menu Credits": "Show Main Menu Credits",
   "Click": "Click",
-  "Keybind": "Keybind"
+  "Keybind": "Keybind",
+  "Passive Meteorite": "Passive Meteorite",
+  "Active Meteorite": "Active Meteorite",
+  "Ultimate Meteorite": "Ultimate Meteorite",
+  "Ultimate Meteorite (skin)": "Ultimate Meteorite (skin)",
+  "+ Add Section": "+ Add Section"
 }

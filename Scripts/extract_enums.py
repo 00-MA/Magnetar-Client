@@ -37,7 +37,7 @@ def convert_plants(
     }
 
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(sorted_plants, f, indent=4, ensure_ascii=False)
+        json.dump(sorted_plants, f, indent=2, ensure_ascii=False)
 
     print(
         f"[Success] Generated '{output_file}' with {len(sorted_plants)} entries."
@@ -70,7 +70,7 @@ def convert_zombies(
     }
 
     with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(sorted_zombies, f, indent=4, ensure_ascii=False)
+        json.dump(sorted_zombies, f, indent=2, ensure_ascii=False)
 
     print(
         f"[Success] Generated '{output_file}' with {len(sorted_zombies)} entries."
