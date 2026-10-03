@@ -22,7 +22,7 @@ public enum TabType
 public static class Magnetar_Info
 {
     public const string ModName = "Magnetar Client";
-    public const string Version = "4.0.1";
+    public const string Version = "4.0.2";
     public const string Developer = "Tproplay";
 }
 

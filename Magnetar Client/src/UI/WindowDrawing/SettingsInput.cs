@@ -357,6 +357,27 @@ public static class DrawSetting
 
         var options = activeMultiSelect.Options;
 
+        // --- GLOBAL SAFETY CHECK: Mouse button release anywhere resets drag and unlocks wheel ---
+        if (!Input.GetMouseButton(0) || e.rawType == EventType.MouseUp || e.type == EventType.MouseUp)
+        {
+            if (activeSliderId == sliderId)
+            {
+                activeSliderId = -1;
+                GUIUtility.hotControl = 0;
+            }
+            _isListSwiping = false;
+            if (isShiftDragging)
+            {
+                isShiftDragging = false;
+                draggedItemsSession.Clear();
+                lastHoveredIndex = -1;
+            }
+#if ANDROID
+            _mobileShiftDragActive = false;
+            _isMobileHolding = false;
+#endif
+        }
+
         // --- 1. TITLE BANNER WITH WORKING CLOSE BUTTON ---
 #if ANDROID
         float titleHeight = Config.S(25f) * 1.30f;
@@ -479,7 +500,7 @@ public static class DrawSetting
             e.Use();
         }
 
-        // --- 4. VIEWPORT & SCROLLBAR ---
+        // --- 4. VIEWPORT & SCROLLBAR GEOMETRY ---
         float contentStartY = searchY + searchHeight + spacing;
         float viewHeight = multiSelectWindowRect.height - contentStartY - Config.S(8f);
         float maxScrollDist = Mathf.Max(0f, totalContentHeight - viewHeight);
@@ -488,90 +509,73 @@ public static class DrawSetting
         float scrollX = multiSelectWindowRect.width - padX - scrollbarWidth;
         float trackStartY = contentStartY;
         float trackHeight = viewHeight;
-        float handleSize = Mathf.Max(Config.S(25f), (viewHeight / Mathf.Max(1f, totalContentHeight)) * trackHeight);
+
+        float handleSize = Mathf.Clamp((viewHeight / Mathf.Max(1f, totalContentHeight)) * trackHeight, Config.S(20f), trackHeight);
         float usableTrackRange = Mathf.Max(1f, trackHeight - handleSize);
 
-        // Compute current handle rect for drag precision
-        float scrollPctCurrent = (maxScrollDist > 0) ? manualScrollY / maxScrollDist : 0f;
+        // Track & Handle rects
+        float scrollPctCurrent = (maxScrollDist > 0f) ? Mathf.Clamp01(targetScrollY / maxScrollDist) : 0f;
         float handleY = trackStartY + (scrollPctCurrent * usableTrackRange);
         Rect handleRect = new(scrollX, handleY, scrollbarWidth, handleSize);
-        Rect trackHitbox = new(scrollX - Config.S(4f), trackStartY, scrollbarWidth + Config.S(8f), trackHeight);
+        Rect trackHitbox = new(scrollX - Config.S(6f), trackStartY, scrollbarWidth + Config.S(12f), trackHeight);
 
-        // --- 5. SCROLLBAR DRAG & MOUSE WHEEL ---
-        if (activeSliderId == sliderId)
-        {
-            if (e.type == EventType.MouseDrag)
-            {
-                float mouseDeltaY = e.mousePosition.y - _scrollbarDragStartMouseY;
-                float scrollDelta = (mouseDeltaY / usableTrackRange) * maxScrollDist;
-                targetScrollY = Mathf.Clamp(_scrollbarDragStartScrollY + scrollDelta, 0f, maxScrollDist);
-                manualScrollY = targetScrollY; // Immediate tracking during physical scrollbar drag
-                lastSliderUpdateTime = Time.time;
-                e.Use();
-            }
-            else if (e.type == EventType.MouseUp || (e.type == EventType.Ignore && e.rawType == EventType.MouseUp))
-            {
-                activeSliderId = -1;
-                e.Use();
-            }
-        }
-        else if (e.type == EventType.MouseDown && trackHitbox.Contains(e.mousePosition))
-        {
-            activeSliderId = sliderId;
-            focusedControlId = -1;
-            _scrollbarDragStartMouseY = e.mousePosition.y;
+        // --- 5. INPUT HANDLING ---
 
-            if (handleRect.Contains(e.mousePosition))
-            {
-                // Drag initiated directly on handle: lock anchor
-                _scrollbarDragStartScrollY = targetScrollY;
-            }
-            else
-            {
-                // Clicked track background: center handle to cursor smoothly
-                float localMouseY = e.mousePosition.y - trackStartY;
-                float scrollPct = Mathf.Clamp01((localMouseY - (handleSize / 2f)) / usableTrackRange);
-                targetScrollY = scrollPct * maxScrollDist;
-                manualScrollY = targetScrollY;
-                _scrollbarDragStartScrollY = targetScrollY;
-            }
-
-            lastSliderUpdateTime = Time.time;
-            e.Use();
-        }
-
-        // Smooth ScrollWheel handling
+        // 5a. Mouse Wheel Scroll (Runs independently so it never gets locked out)
         if (e.type == EventType.ScrollWheel && new Rect(0, 0, multiSelectWindowRect.width, multiSelectWindowRect.height).Contains(e.mousePosition))
         {
             targetScrollY = Mathf.Clamp(targetScrollY + (e.delta.y * Config.S(40f)), 0f, maxScrollDist);
+            manualScrollY = targetScrollY;
             lastSliderUpdateTime = Time.time;
             e.Use();
         }
 
-        // Framerate-independent interpolation smoothing
+        // 5b. Scrollbar Click / Drag Initiation
+        if (e.type == EventType.MouseDown && e.button == 0 && trackHitbox.Contains(e.mousePosition))
+        {
+            activeSliderId = sliderId;
+            focusedControlId = -1;
+            lastSliderUpdateTime = Time.time;
+
+            if (handleRect.Contains(e.mousePosition))
+            {
+                // Grab offset relative to thumb top
+                _scrollbarDragStartMouseY = e.mousePosition.y - handleY;
+            }
+            else
+            {
+                // Click on track: jump center of handle to cursor
+                _scrollbarDragStartMouseY = handleSize * 0.5f;
+                float localY = e.mousePosition.y - trackStartY - _scrollbarDragStartMouseY;
+                float scrollPct = Mathf.Clamp01(localY / usableTrackRange);
+                targetScrollY = scrollPct * maxScrollDist;
+                manualScrollY = targetScrollY;
+            }
+            e.Use();
+        }
+
+        // 5c. Continuous Drag Tracking
+        if (activeSliderId == sliderId && Input.GetMouseButton(0))
+        {
+            float localY = e.mousePosition.y - trackStartY - _scrollbarDragStartMouseY;
+            float scrollPct = Mathf.Clamp01(localY / usableTrackRange);
+            targetScrollY = scrollPct * maxScrollDist;
+            manualScrollY = targetScrollY;
+            lastSliderUpdateTime = Time.time;
+
+            if (e.isMouse) e.Use();
+        }
+
+        // 5d. Framerate-Independent Smoothing when not manually dragging
         if (activeSliderId != sliderId && !_isListSwiping)
         {
-            manualScrollY = Mathf.Lerp(manualScrollY, targetScrollY, 1f - Mathf.Exp(-20f * Time.unscaledDeltaTime));
+            manualScrollY = Mathf.Lerp(manualScrollY, targetScrollY, 1f - Mathf.Exp(-25f * Time.unscaledDeltaTime));
             if (Mathf.Abs(manualScrollY - targetScrollY) < 0.01f)
             {
                 manualScrollY = targetScrollY;
             }
         }
-
-        if (e.type == EventType.MouseUp || (e.type == EventType.Ignore && e.rawType == EventType.MouseUp))
-        {
-            _isListSwiping = false;
-            if (isShiftDragging)
-            {
-                isShiftDragging = false;
-                draggedItemsSession.Clear();
-                lastHoveredIndex = -1;
-            }
-#if ANDROID
-            _mobileShiftDragActive = false;
-            _isMobileHolding = false;
-#endif
-        }
+        manualScrollY = Mathf.Clamp(manualScrollY, 0f, maxScrollDist);
 
         // --- 6. THE LIST VIEWPORT ---
         float listWidth = availWidth - scrollbarWidth - Config.S(6f);
@@ -836,10 +840,13 @@ public static class DrawSetting
         GUI.EndGroup();
 
         // --- 7. SCROLLBAR VISUALS ---
-        GUI.Box(new Rect(scrollX + (scrollbarWidth / 2f) - 1f, trackStartY, 2, trackHeight), "", Magnetar_Default.SeparatorStyle);
+        if (maxScrollDist > 0f)
+        {
+            GUI.Box(new Rect(scrollX + (scrollbarWidth / 2f) - 1f, trackStartY, 2f, trackHeight), "", Magnetar_Default.SeparatorStyle);
 
-        bool shouldHighlight = (activeSliderId == sliderId) || (Time.time - lastSliderUpdateTime < 1.0f);
-        GUI.Box(handleRect, "", shouldHighlight ? Magnetar_Default.SettingOn : Magnetar_Default.SettingOff);
+            bool shouldHighlight = (activeSliderId == sliderId) || (Time.time - lastSliderUpdateTime < 0.5f) || trackHitbox.Contains(e.mousePosition);
+            GUI.Box(handleRect, "", shouldHighlight ? Magnetar_Default.SettingOn : Magnetar_Default.SettingOff);
+        }
     }
 
     private static void ToggleWithLimit(dynamic activeMultiSelect, int val)
