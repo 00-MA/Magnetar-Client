@@ -144,9 +144,12 @@ public class SectionSetting : Setting
             string foldArrow = section.IsExpanded ? "▼ " : "▶ ";
             string secLabel = foldArrow + Translator.Translate(section.Title);
 
-            // Sub-header bar
-            if (GUI.Button(secHeaderRect, secLabel, Magnetar_Default.SectionHeaderStyle))
+            // Sub-header bar box visual
+            GUI.Box(secHeaderRect, secLabel, Magnetar_Default.SectionHeaderStyle);
+
+            if (e.type == EventType.MouseDown && e.button == 0 && secHeaderRect.Contains(e.mousePosition))
             {
+                e.Use();
                 section.IsExpanded = !section.IsExpanded;
             }
 
